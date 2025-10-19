@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "react-scripts build",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "react-scripts start"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@types/lodash.debounce": "^4.0.9",
