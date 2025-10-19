@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /document-reader/
+
+# Sitemap
+Sitemap: https://speechthis.com/sitemap.xml

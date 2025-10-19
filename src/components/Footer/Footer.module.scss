@@ -1,0 +1,131 @@
+.footer {
+    background: rgba(16, 16, 28, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(103, 232, 249, 0.1);
+    margin-top: auto;
+    color: #94a3b8;
+    text-align: center;
+
+    // Full width - no need for the negative margin trick since it's outside .main
+    width: 100%;
+    padding: 2.5rem 1rem;
+    box-shadow: 0 -4px 32px rgba(103, 232, 249, 0.05);
+    box-sizing: border-box;
+}
+
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+
+}
+
+.footerNav {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+        gap: 1.25rem;
+    }
+
+    @media (max-width: 440px) {
+        gap: 0.5rem;
+        // gap: 1rem;
+    }
+}
+
+.footerNav a {
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 0.25rem 0;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, #67e8f9, #7c3aed);
+        transform: scaleX(0);
+        transition: transform 0.2s ease;
+    }
+
+    @media (max-width: 440px) {
+        font-size: 0.7rem;
+        // gap: 1rem;
+    }
+}
+
+.footerNav a:hover {
+    color: #67e8f9;
+
+    &::after {
+        transform: scaleX(1);
+    }
+}
+
+.legal {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(103, 232, 249, 0.05);
+
+    @media (max-width: 768px) {
+        gap: 1rem;
+    }
+}
+
+.legal a {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+}
+
+.legal a:hover {
+    color: #67e8f9;
+}
+
+.contact {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    a {
+        color: #67e8f9;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: #a78bfa;
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer small {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    display: block;
+}

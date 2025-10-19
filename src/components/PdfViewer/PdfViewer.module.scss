@@ -1,0 +1,323 @@
+.kindleWrapper {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.zoomControls {
+    position: fixed;
+    top: 120px;
+    right: 40px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(103, 232, 249, 0.3);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    width: fit-content;
+
+    &:hover {
+        background: rgba(15, 23, 42, 0.95);
+        border-color: rgba(103, 232, 249, 0.5);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.zoomButton {
+    background: none;
+    border: none;
+    color: #67e8f9;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+
+    & svg {
+        width: 1rem;
+    }
+
+    &:hover {
+        background: rgba(103, 232, 249, 0.2);
+        color: #ffffff;
+        transform: scale(1.1);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.zoomLevel {
+    color: #67e8f9;
+    font-size: 0.875rem;
+    font-weight: 600;
+    min-width: 3rem;
+
+    text-align: center;
+}
+
+button.zoomLevel {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    width: 5rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus {
+        color: #ffffff;
+        background-color: rgba(103, 232, 249, 0.15);
+        outline: none;
+    }
+}
+
+.kindleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: transparent;
+    padding: 3rem 0.5rem;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: auto;
+}
+
+.kindlePage {
+    background-color: #1e293b;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(103, 232, 249, 0.2);
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: none;
+    border: 1px solid rgba(103, 232, 249, 0.1);
+    position: relative;
+    overflow: visible;
+
+    // Canvas styling
+    & canvas {
+        filter: brightness(0.9) contrast(1.1) !important;
+        display: block;
+        margin: 0 auto;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg,
+                rgba(103, 232, 249, 0.05) 0%,
+                rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, transparent 50%, rgba(103, 232, 249, 0.2) 100%);
+        border-radius: 0 12px 0 12px;
+        z-index: 10;
+    }
+}
+
+// Per-page scroll wrapper for mobile when zoomed >= 100%
+.pageScrollWrapper {
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    margin-bottom: 3rem;
+    position: relative;
+
+    // Custom scrollbar styling for better UX
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(103, 232, 249, 0.1);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(103, 232, 249, 0.4);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(103, 232, 249, 0.6);
+        }
+    }
+
+    // Center the page initially with scroll snap
+    scroll-snap-type: x proximity;
+
+    // Ensure the page inside can expand beyond viewport
+    &>div {
+        display: inline-block;
+        scroll-snap-align: center;
+    }
+}
+
+// Direct text highlighting (applied to spans)
+// Global override for react-pdf spans
+:global {
+    .react-pdf__Page__textContent {
+        span.highlighted {
+            color: #ffffff !important;
+            background-color: rgb(0, 19, 126) !important;
+            padding: 1px !important;
+            border-radius: 2px !important;
+            transition: all 0.2s ease-in-out !important;
+            z-index: 100 !important;
+        }
+    }
+}
+
+// Overlay highlighting for extra visibility
+.wordHighlight {
+    background-color: rgba(255, 255, 0, 0.6);
+    border: 2px solid #ff6600;
+    border-radius: 4px;
+    z-index: 1000;
+    box-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
+}
+
+// Loading and error styles
+.documentLoading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+
+    p {
+        margin-top: 1rem;
+        color: #67e8f9;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+.documentSpinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(103, 232, 249, 0.2);
+    border-left-color: #67e8f9;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.documentError {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+
+    p {
+        color: #ef4444;
+        font-size: 1rem;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+    .kindleContainer {
+        padding: 2rem 0.25rem;
+    }
+
+    .kindlePage {
+        margin-bottom: 2rem;
+    }
+
+    .zoomControls {
+        display: none; // Hide zoom controls on mobile - they're now in the audio player bar
+    }
+
+    .zoomButton {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .zoomLevel {
+        font-size: 0.8rem;
+        min-width: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kindleContainer {
+        padding: 1.5rem 0.25rem;
+    }
+
+    .kindlePage {
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+
+        &::after {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .zoomControls {
+        display: none; // Hide zoom controls on mobile - they're now in the audio player bar
+    }
+
+    .documentError p {
+        font-size: 0.9rem;
+    }
+}
+
+// :global(.react-pdf__Page__textContent) {
+//     span {
+//         color: #ffffff !important;
+//         background-color: rgb(0, 19, 126) !important;
+//         padding: 1px;
+//     }
+// }

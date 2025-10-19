@@ -1,0 +1,113 @@
+/* Professional highlighting system - overlay based (like Speechify) */
+
+:global {
+  .highlight-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .word-highlight-overlay {
+    position: absolute;
+    background-color: rgba(0, 19, 126, 0.3);
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 15;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 8px rgba(0, 19, 126, 0.4);
+  }
+
+  /* Optional: Add a subtle animation for word highlighting */
+  .word-highlight-overlay {
+    animation: highlightPulse 0.3s ease-in-out;
+  }
+
+  @keyframes highlightPulse {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+  }
+
+  /* Legacy support - keep for fallback but make less prominent */
+  .react-pdf__Page__textContent {
+    span span[role="presentation"].highlighted {
+      background-color: rgba(0, 19, 126, 0.1) !important;
+      border-radius: 2px !important;
+      transition: all 0.2s ease-in-out !important;
+    }
+  }
+}
+
+.react-pdf__Page {
+  box-sizing: border-box;
+}
+
+.react-pdf__Document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+  // box-sizing: border-box;
+}
+
+
+.react-pdf__Page__textContent {
+  .pdf-word {
+    display: inline;
+  }
+}
+
+
+// Word highlighting styles
+.word-highlight {
+  position: absolute;
+  background-color: rgba(0, 123, 255, 0.3);
+  border: 2px solid rgba(0, 123, 255, 0.6);
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+.word-highlight:hover {
+  background-color: rgba(0, 123, 255, 0.4);
+  border-color: rgba(0, 123, 255, 0.8);
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
+}
+
+// Ensure the container can handle absolute positioning
+.kindleWrapper {
+  position: relative;
+}
+
+.kindleContainer {
+  position: relative;
+}
+
+.word-hover-highlight {
+  position: absolute;
+  background-color: rgba(0, 80, 200, 0.2);
+  border: 1px solid rgba(0, 80, 200, 0.5);
+  border-radius: 3px;
+  z-index: 999;
+  transition: all 0.05s ease;
+  cursor: pointer;
+}
