@@ -6,7 +6,6 @@ import { instance, instanceNoAuth } from '../utils/axiosInstance';
 import { UploadModal } from '../components/PDFUploader/UploadModal';
 import { useDownload } from '../context/DownloadContext';
 import { DownloadBar } from '../components/DownloadBar/DownloadBar';
-import { SEO } from '../components/SEO/SEO';
 
 // Language mapping for human-readable names
 const LANGUAGE_MAP: Record<string, string> = {
@@ -600,11 +599,12 @@ export function Dashboard() {
 
   return (
     <>
-      <SEO
-        title="Dashboard"
-        description="Manage your PDF to audio conversions"
-        noindex={true}
-      />
+      {/* React 19 Native Metadata */}
+      <title>Dashboard | PDF to Audio</title>
+      <meta name="title" content="Dashboard | PDF to Audio" />
+      <meta name="description" content="Manage your PDF to audio conversions" />
+      <meta name="robots" content="noindex, nofollow" />
+
       <div className={styles.container}>
         <DownloadBar />
 

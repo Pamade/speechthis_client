@@ -11,7 +11,6 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { useDownload } from '../context/DownloadContext';
 import { UserContext } from '../context/UserContext';
-import { SEO } from '../components/SEO/SEO';
 import { domain } from '../utils/other';
 
 // Set up PDF.js worker with error handling
@@ -698,12 +697,31 @@ export function Home() {
 
   return (
     <>
-      <SEO
-        title="PDF to Audio - Convert Documents to Speech with AI Voices"
-        description="Transform your PDF documents into high-quality audio with AI-powered text-to-speech. Try free demo with Azure and Google voices. Upload, listen, and download MP3s."
-        keywords="PDF to audio, text to speech, PDF reader, audiobook converter, AI voice, read aloud, document to audio, Azure TTS, Google TTS, free TTS"
-        canonical={domain}
-      />
+      {/* React 19 Native Metadata */}
+      <title>PDF to Audio - Convert Documents to Speech with AI Voices | PDF to Audio</title>
+      <meta name="title" content="PDF to Audio - Convert Documents to Speech with AI Voices | PDF to Audio" />
+      <meta name="description" content="Transform your PDF documents into high-quality audio with AI-powered text-to-speech. Try free demo with Azure and Google voices. Upload, listen, and download MP3s." />
+      <meta name="keywords" content="PDF to audio, text to speech, PDF reader, audiobook converter, AI voice, read aloud, document to audio, Azure TTS, Google TTS, free TTS" />
+
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={domain} />
+      <meta property="og:title" content="PDF to Audio - Convert Documents to Speech with AI Voices | PDF to Audio" />
+      <meta property="og:description" content="Transform your PDF documents into high-quality audio with AI-powered text-to-speech. Try free demo with Azure and Google voices. Upload, listen, and download MP3s." />
+      <meta property="og:image" content={`${domain}/l.png`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={domain} />
+      <meta property="twitter:title" content="PDF to Audio - Convert Documents to Speech with AI Voices | PDF to Audio" />
+      <meta property="twitter:description" content="Transform your PDF documents into high-quality audio with AI-powered text-to-speech. Try free demo with Azure and Google voices. Upload, listen, and download MP3s." />
+      <meta property="twitter:image" content={`${domain}/l.png`} />
+
+      {/* Canonical URL */}
+      <link rel="canonical" href={domain} />
+
       <div className={styles.container}>
         <div className={styles.mainContent}>
           <header className={styles.header}>

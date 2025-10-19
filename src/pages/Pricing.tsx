@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Pricing.module.scss';
 import { createCheckoutSession } from '../services/stripeService';
 import { useNavigate } from 'react-router-dom';
-import { SEO } from '../components/SEO/SEO';
+import { domain } from '../utils/other';
 
 
 export function Pricing() {
@@ -45,12 +45,31 @@ export function Pricing() {
 
   return (
     <>
-      <SEO
-        title="Pricing - PDF to Audio Converter"
-        description="Affordable PDF to audio conversion pricing. Pay only for what you use. $0.15 per MB. Convert documents to high-quality audio with AI voices."
-        keywords="PDF to audio pricing, text to speech cost, audiobook pricing, TTS pricing, document conversion pricing"
-        canonical="https://yourdomain.com/pricing"
-      />
+      {/* React 19 Native Metadata */}
+      <title>Pricing - PDF to Audio Converter | PDF to Audio</title>
+      <meta name="title" content="Pricing - PDF to Audio Converter | PDF to Audio" />
+      <meta name="description" content="Affordable PDF to audio conversion pricing. Pay only for what you use. $0.15 per MB. Convert documents to high-quality audio with AI voices." />
+      <meta name="keywords" content="PDF to audio pricing, text to speech cost, audiobook pricing, TTS pricing, document conversion pricing" />
+
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${domain}/pricing`} />
+      <meta property="og:title" content="Pricing - PDF to Audio Converter | PDF to Audio" />
+      <meta property="og:description" content="Affordable PDF to audio conversion pricing. Pay only for what you use. $0.15 per MB. Convert documents to high-quality audio with AI voices." />
+      <meta property="og:image" content={`${domain}/l.png`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={`${domain}/pricing`} />
+      <meta property="twitter:title" content="Pricing - PDF to Audio Converter | PDF to Audio" />
+      <meta property="twitter:description" content="Affordable PDF to audio conversion pricing. Pay only for what you use. $0.15 per MB. Convert documents to high-quality audio with AI voices." />
+      <meta property="twitter:image" content={`${domain}/l.png`} />
+
+      {/* Canonical URL */}
+      <link rel="canonical" href={`${domain}/pricing`} />
+
       <div className={styles.container}>
         <header className={styles.header}>
           <h1>Simple, Transparent Pricing</h1>
