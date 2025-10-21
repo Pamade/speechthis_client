@@ -310,29 +310,29 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
             //     position: 'top-center'
             // });
 
-            try {
-                // Use the audioId from the upload response
-                if (audioUploadResponse.data && audioUploadResponse.data.audioId) {
-                    const audioId = audioUploadResponse.data.audioId;
-                    await instance.post(`/files/notify-audio-ready/${audioId}`, {});
-                } else {
-                    throw new Error('No audioId received from upload response');
-                }
+            // try {
+            //     // Use the audioId from the upload response
+            //     if (audioUploadResponse.data && audioUploadResponse.data.audioId) {
+            //         const audioId = audioUploadResponse.data.audioId;
+            //         await instance.post(`/files/notify-audio-ready/${audioId}`, {});
+            //     } else {
+            //         throw new Error('No audioId received from upload response');
+            //     }
 
-                // toast.dismiss(loadingToast);
-                toast.success('Audio file has been sent to your email!', {
-                    duration: 4000,
-                    position: 'top-center'
-                });
-            } catch (e) {
-                // toast.dismiss(loadingToast);
-                alert("")
-                toast.error('Failed to send audio file to email. Please try again.', {
-                    duration: 4000,
-                    position: 'top-center'
-                });
-                console.error("Email sending failed:", e);
-            }
+            //     // toast.dismiss(loadingToast);
+            //     toast.success('Audio file has been sent to your email!', {
+            //         duration: 4000,
+            //         position: 'top-center'
+            //     });
+            // } catch (e) {
+            //     // toast.dismiss(loadingToast);
+            //     alert("")
+            //     toast.error('Failed to send audio file to email. Please try again.', {
+            //         duration: 4000,
+            //         position: 'top-center'
+            //     });
+            //     console.error("Email sending failed:", e);
+            // }
 
             resetDownload();
             onClose();
