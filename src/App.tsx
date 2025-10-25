@@ -18,7 +18,8 @@ import { ResetPassword } from './components/auth/ResetPassword/ResetPassword';
 import DocumentReaderWrapper from "./pages/DocumentReaderWrapper";
 import SampleReaderPage from "./pages/SampleReaderPage";
 import Footer from "./components/Footer/Footer";
-
+import Guides from './pages/Guides';
+import SingleGuide from './pages/SingleGuide';
 function App() {
 
   const [downloadBarHeight, setDownloadBarHeight] = useState(0);
@@ -114,6 +115,8 @@ function App() {
           {/* Standalone routes without layout */}
           <Route path="/document-reader" element={<DocumentReaderWrapper />} />
           <Route path="/reader/sample" element={<SampleReaderPage />} />
+          <Route path="/guides" element={<Guides />} />
+          <Route path="/guides/:slug" element={<SingleGuide />} />
         </Routes>
       </UserProvider>
     </Router>

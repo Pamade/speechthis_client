@@ -1,0 +1,640 @@
+        {
+            "id": "2",
+            "title": "Complete Guide to Converting Documents to Audio: PDF, DOCX & EPUB",
+            "description": "Master the art of converting any document into high-quality audio. Learn optimal settings, format-specific tips, and best practices.",
+            "category": "How-To Guides",
+            "date": "2024-01-10",
+            "slug": "document-to-audio-conversion-guide",
+            "keywords": [
+                "convert PDF to audio",
+                "DOCX to speech",
+                "EPUB to audiobook",
+                "document to audio converter",
+                "PDF to MP3",
+                "text to audio conversion",
+                "create audiobook from PDF",
+                "document reader app",
+                "convert ebook to audio",
+                "TTS document conversion"
+            ],
+            "metaDescription": "Complete guide to converting PDF, DOCX, and EPUB documents into high-quality audio files. Learn optimal settings, supported formats, troubleshooting tips, and best practices for perfect document-to-audio conversion.",
+            "readTime": "8 min read",
+            "thumbnailImage": "/guides/document-conversion-thumbnail.webp",
+            "thumbnailAlt": "Various document formats being converted to audio waveforms",
+            "sections": [
+                {
+                    "heading": "Understanding Document Formats",
+                    "content": "Not all documents are created equal when it comes to audio conversion. Each format has unique characteristics that affect how well it converts to speech. Let's explore the three main formats and how to get the best results from each.",
+                    "type": "paragraph"
+                },
+                {
+                    "heading": "PDF Documents: The Universal Format",
+                    "image": "/assets/guides/pdf-conversion-example.jpg",
+                    "imageAlt": "PDF document being processed for text-to-speech conversion",
+                    "content": "PDFs are the most common format for academic papers, textbooks, reports, and professional documents. However, they come in two distinct types:",
+                    "type": "paragraph"
+                },
+                {
+                    "subheading": "Text-Based PDFs",
+                    "content": "These PDFs contain actual text data and convert seamlessly:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Best for",
+                            "description": "Digital-first documents, ebooks, reports created from Word or LaTeX"
+                        },
+                        {
+                            "title": "Conversion quality",
+                            "description": "Excellent - preserves formatting, headings, and paragraph structure"
+                        },
+                        {
+                            "title": "Processing time",
+                            "description": "Fast - typically 2-5 seconds per page"
+                        },
+                        {
+                            "title": "Pro tip",
+                            "description": "These work perfectly with all TTS features including bookmarks and navigation"
+                        }
+                    ]
+                },
+                {
+                    "subheading": "Scanned PDFs (Image-Based)",
+                    "content": "These are essentially photographs of pages and require OCR (Optical Character Recognition):",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Best for",
+                            "description": "Scanned books, old documents, photocopied materials"
+                        },
+                        {
+                            "title": "Conversion quality",
+                            "description": "Good to excellent, depending on scan quality"
+                        },
+                        {
+                            "title": "Processing time",
+                            "description": "Slower - 10-30 seconds per page for OCR processing"
+                        },
+                        {
+                            "title": "Pro tip",
+                            "description": "Ensure scans are high resolution (300 DPI+) and well-lit for best OCR accuracy"
+                        }
+                    ]
+                },
+                {
+                    "heading": "DOCX Files: Microsoft Word Documents",
+                    "content": "Word documents are ideal for audio conversion because they maintain clean text structure and formatting:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Advantages",
+                            "description": "Perfect text extraction, preserves headings and styles, handles tables and lists intelligently"
+                        },
+                        {
+                            "title": "Best practices",
+                            "description": "Use heading styles (H1, H2, H3) for better navigation. Remove headers/footers if they contain page numbers or repeated text"
+                        },
+                        {
+                            "title": "Processing speed",
+                            "description": "Very fast - instant text extraction regardless of document length"
+                        },
+                        {
+                            "title": "Compatibility",
+                            "description": "Works with both .doc and .docx formats, including Google Docs exports"
+                        }
+                    ]
+                },
+                {
+                    "heading": "EPUB Files: Digital Books",
+                    "image": "/assets/guides/epub-conversion-example.jpg",
+                    "imageAlt": "EPUB ebook being converted to audio format",
+                    "content": "EPUB is the standard format for ebooks and offers the best reading experience:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Perfect for audiobooks",
+                            "description": "Built-in chapter structure, table of contents, and metadata make EPUB ideal for long-form audio conversion"
+                        },
+                        {
+                            "title": "Reflowable text",
+                            "description": "Text automatically adjusts, ensuring clean extraction without formatting issues"
+                        },
+                        {
+                            "title": "Chapter navigation",
+                            "description": "Automatically creates bookmarks based on the book's chapter structure"
+                        },
+                        {
+                            "title": "Best quality",
+                            "description": "Consistently produces the highest quality audio output with proper pacing and breaks"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Step-by-Step Conversion Process",
+                    "content": "Follow these steps for optimal document-to-audio conversion:",
+                    "type": "ordered-list",
+                    "items": [
+                        "Upload your document (drag-and-drop or click to browse)",
+                        "Wait for processing - you'll see a progress indicator",
+                        "Select your preferred voice from our neural TTS options",
+                        "Adjust playback speed (0.5x to 2.0x)",
+                        "Choose audio quality settings (standard or high quality)",
+                        "Start listening or download as MP3 for offline use"
+                    ]
+                },
+                {
+                    "heading": "Optimizing Audio Quality",
+                    "subheading": "Voice Selection Tips",
+                    "content": "Choosing the right voice dramatically impacts listening experience:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Neural voices",
+                            "description": "Always choose neural/AI voices over standard ones - they sound 10x more natural"
+                        },
+                        {
+                            "title": "Match content type",
+                            "description": "Use professional voices for business documents, warm voices for fiction, clear voices for technical content"
+                        },
+                        {
+                            "title": "Language accuracy",
+                            "description": "Select voices that match your document's language for proper pronunciation"
+                        },
+                        {
+                            "title": "Personal preference",
+                            "description": "Test 2-3 voices with a sample paragraph before committing to long documents"
+                        }
+                    ]
+                },
+                {
+                    "subheading": "Speed Settings Guide",
+                    "content": "Different content types work best at different speeds:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "0.75x - 0.9x",
+                            "description": "Technical manuals, legal documents, complex academic papers, learning new languages"
+                        },
+                        {
+                            "title": "1.0x - 1.2x",
+                            "description": "General reading, novels, articles, comfortable listening pace"
+                        },
+                        {
+                            "title": "1.3x - 1.5x",
+                            "description": "Review material, familiar content, news articles, productivity reading"
+                        },
+                        {
+                            "title": "1.6x - 2.0x",
+                            "description": "Quick reviews, skimming, very familiar material (requires practice)"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Common Issues and Solutions",
+                    "image": "/assets/guides/troubleshooting-conversion.jpg",
+                    "imageAlt": "Troubleshooting common document conversion issues",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Problem: Garbled or missing text",
+                            "description": "Solution: Your PDF may be image-based. Try using OCR processing or convert to DOCX first using Adobe Acrobat or online converters."
+                        },
+                        {
+                            "title": "Problem: Incorrect pronunciation",
+                            "description": "Solution: Try different neural voices - some handle technical terms better. For persistent issues, edit the document to spell out acronyms phonetically."
+                        },
+                        {
+                            "title": "Problem: Headers/footers being read",
+                            "description": "Solution: Remove headers and footers in the original document before uploading, or use our 'Clean Text' option during processing."
+                        },
+                        {
+                            "title": "Problem: Poor audio quality",
+                            "description": "Solution: Switch to 'High Quality' mode in settings. Ensure you're using neural voices, not standard TTS voices."
+                        },
+                        {
+                            "title": "Problem: Slow processing",
+                            "description": "Solution: Large files (100+ pages) take longer. For scanned PDFs, OCR processing adds time. Consider splitting very large documents."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Advanced Tips for Power Users",
+                    "content": "Take your document conversion to the next level:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Batch processing",
+                            "description": "Upload multiple documents at once to process overnight. Perfect for converting entire textbook series."
+                        },
+                        {
+                            "title": "Custom bookmarks",
+                            "description": "Create bookmarks at key sections for easy navigation during playback."
+                        },
+                        {
+                            "title": "Audio export",
+                            "description": "Download as MP3 with chapter markers for use in podcast apps or car audio systems."
+                        },
+                        {
+                            "title": "Preprocessing documents",
+                            "description": "Clean up formatting, remove page numbers, and add paragraph breaks before uploading for best results."
+                        },
+                        {
+                            "title": "Multi-language documents",
+                            "description": "For documents with multiple languages, split them and use appropriate voices for each section."
+                        }
+                    ]
+                },
+                {
+                    "heading": "File Size and Length Limits",
+                    "content": "Understanding our processing capabilities:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Free tier",
+                            "description": "Up to 50 pages or 10MB per document, 5 documents per month"
+                        },
+                        {
+                            "title": "Premium tier",
+                            "description": "Up to 500 pages or 100MB per document, unlimited documents"
+                        },
+                        {
+                            "title": "Enterprise tier",
+                            "description": "No limits, priority processing, batch API access"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Best Practices Checklist",
+                    "content": "Before converting your document, ensure:",
+                    "type": "ordered-list",
+                    "items": [
+                        "Document is in supported format (PDF, DOCX, or EPUB)",
+                        "Text is selectable (not image-based) or high-quality scan",
+                        "Headers/footers removed if they contain repetitive content",
+                        "File size is within your plan limits",
+                        "Language matches available voice options",
+                        "You've tested with a sample page first for long documents"
+                    ]
+                },
+                {
+                    "content": "Following these guidelines will ensure you get the highest quality audio output from your documents, whether you're converting a single article or an entire library of textbooks.",
+                    "type": "paragraph"
+                }
+            ],
+            "relatedGuides": [
+                "text-to-speech-learning-retention",
+                "accessibility-features-tts"
+            ],
+            "callToAction": {
+                "text": "Ready to convert your first document to audio?",
+                "buttonText": "Start Converting Now",
+                "buttonLink": "/dashboard"
+            }
+        },
+        {
+            "id": "3",
+            "title": "Accessibility Features: How TTS Empowers Readers with Disabilities",
+            "description": "Discover how text-to-speech technology breaks down barriers for people with dyslexia, visual impairments, and learning disabilities.",
+            "category": "Accessibility",
+            "date": "2024-01-05",
+            "slug": "accessibility-features-tts",
+            "keywords": [
+                "text to speech accessibility",
+                "TTS for dyslexia",
+                "assistive technology",
+                "reading disabilities support",
+                "visual impairment tools",
+                "accessible reading",
+                "learning disabilities technology",
+                "inclusive education",
+                "screen reader alternative",
+                "accessible documents"
+            ],
+            "metaDescription": "Learn how text-to-speech technology provides crucial accessibility features for people with dyslexia, visual impairments, and learning disabilities. Discover tools and techniques for inclusive reading.",
+            "readTime": "7 min read",
+            "thumbnailImage": "/assets/guides/accessibility-tts-thumbnail.jpg",
+            "thumbnailAlt": "Person using assistive technology with headphones and tablet",
+            "sections": [
+                {
+                    "heading": "Breaking Down Barriers to Reading",
+                    "content": "For millions of people worldwide, reading traditional text presents significant challenges. Text-to-speech technology has emerged as a powerful equalizer, transforming how people with various disabilities access written information. This isn't just about convenience—it's about fundamental access to education, employment, and information.",
+                    "type": "paragraph"
+                },
+                {
+                    "content": "According to the World Health Organization, over 2.2 billion people have vision impairment, and approximately 10% of the global population has dyslexia. TTS technology provides these individuals with independence and equal access to the written word.",
+                    "type": "paragraph"
+                },
+                {
+                    "heading": "TTS for Dyslexia: A Game-Changer",
+                    "image": "/assets/guides/dyslexia-support.jpg",
+                    "imageAlt": "Student with dyslexia successfully using text-to-speech technology",
+                    "content": "Dyslexia affects how the brain processes written language, making reading slow and exhausting. Text-to-speech provides crucial support:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Reduces cognitive load",
+                            "description": "Listening while reading (dual-coding) helps dyslexic readers focus on comprehension rather than decoding individual words."
+                        },
+                        {
+                            "title": "Improves reading speed",
+                            "description": "Studies show dyslexic students can process information 2-3x faster when using TTS compared to reading alone."
+                        },
+                        {
+                            "title": "Builds confidence",
+                            "description": "Removes the anxiety and frustration associated with slow reading, allowing focus on learning content."
+                        },
+                        {
+                            "title": "Supports multi-sensory learning",
+                            "description": "Engages both visual and auditory pathways, which is proven more effective for dyslexic learners."
+                        }
+                    ]
+                },
+                {
+                    "subheading": "Recommended Settings for Dyslexia",
+                    "content": "Optimize TTS for dyslexic readers:",
+                    "type": "list",
+                    "items": [
+                        "Use slightly slower speeds (0.9x - 1.1x) for better processing",
+                        "Enable word highlighting to follow along visually",
+                        "Choose clear, articulate voices without heavy accents",
+                        "Use dyslexia-friendly fonts in the reader interface",
+                        "Enable longer pauses at sentence boundaries"
+                    ]
+                },
+                {
+                    "heading": "Visual Impairments and Low Vision Support",
+                    "content": "For people with visual impairments, TTS provides essential access to written content:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Complete independence",
+                            "description": "Read any document without requiring sighted assistance or specialized braille materials."
+                        },
+                        {
+                            "title": "Faster than braille",
+                            "description": "TTS can deliver information at 150-200 words per minute, compared to 125 wpm average for braille reading."
+                        },
+                        {
+                            "title": "Access to any document",
+                            "description": "Unlike braille, which requires special formatting, TTS works with standard PDFs, Word docs, and ebooks."
+                        },
+                        {
+                            "title": "Portable and convenient",
+                            "description": "Use on any device with headphones - no specialized equipment needed."
+                        }
+                    ]
+                },
+                {
+                    "subheading": "Optimizing for Screen Reader Users",
+                    "content": "Our platform is designed with screen reader compatibility:",
+                    "type": "list",
+                    "items": [
+                        "Full keyboard navigation support",
+                        "ARIA labels on all interactive elements",
+                        "Logical heading structure for easy navigation",
+                        "Skip-to-content links",
+                        "Clear focus indicators"
+                    ]
+                },
+                {
+                    "heading": "ADHD and Focus Challenges",
+                    "image": "/assets/guides/adhd-focus-support.jpg",
+                    "imageAlt": "Person with ADHD using TTS to maintain focus while studying",
+                    "content": "People with ADHD often struggle with sustained attention during reading. TTS helps by:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Maintaining engagement",
+                            "description": "Audio provides an external pacing mechanism that helps prevent mind-wandering and re-reading the same paragraph multiple times."
+                        },
+                        {
+                            "title": "Enabling movement",
+                            "description": "Listen while walking, fidgeting, or doing light activities - perfect for kinesthetic learners with ADHD."
+                        },
+                        {
+                            "title": "Reducing overwhelm",
+                            "description": "Breaking long documents into audio chunks makes large reading tasks feel more manageable."
+                        },
+                        {
+                            "title": "Customizable speed",
+                            "description": "Many ADHD users find faster playback speeds (1.3x - 1.5x) actually improve focus by matching their natural processing speed."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Autism Spectrum Disorder Support",
+                    "content": "TTS technology offers unique benefits for individuals on the autism spectrum:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Consistent, predictable delivery",
+                            "description": "Neural voices provide uniform tone and pacing, reducing sensory unpredictability."
+                        },
+                        {
+                            "title": "Removes social reading pressure",
+                            "description": "No need to read aloud in class or group settings, which can cause anxiety."
+                        },
+                        {
+                            "title": "Supports literal thinking",
+                            "description": "Clear pronunciation helps with understanding idioms and figurative language when paired with text."
+                        },
+                        {
+                            "title": "Customizable sensory input",
+                            "description": "Adjust voice, speed, and volume to match individual sensory preferences."
+                        }
+                    ]
+                },
+                {
+                    "heading": "English Language Learners (ELL)",
+                    "content": "TTS is invaluable for people learning English or reading in a second language:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Pronunciation modeling",
+                            "description": "Hear correct pronunciation of unfamiliar words while reading, accelerating vocabulary acquisition."
+                        },
+                        {
+                            "title": "Comprehension support",
+                            "description": "Listening while reading improves understanding of sentence structure and grammar."
+                        },
+                        {
+                            "title": "Accent exposure",
+                            "description": "Choose from various English accents (American, British, Australian) to build listening comprehension."
+                        },
+                        {
+                            "title": "Adjustable speed",
+                            "description": "Slow down to 0.7x - 0.8x for careful listening and learning, then gradually increase speed."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Elderly Users and Age-Related Vision Decline",
+                    "image": "/assets/guides/elderly-tts-use.jpg",
+                    "imageAlt": "Elderly person comfortably using text-to-speech on tablet",
+                    "content": "As we age, vision naturally declines. TTS helps seniors maintain reading independence:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Reduces eye strain",
+                            "description": "Eliminates the need for prolonged focus on small text, preventing headaches and fatigue."
+                        },
+                        {
+                            "title": "No special equipment needed",
+                            "description": "Unlike magnifiers or special lighting, TTS works on devices seniors already own."
+                        },
+                        {
+                            "title": "Maintains cognitive engagement",
+                            "description": "Continued access to books, news, and articles supports mental health and cognitive function."
+                        },
+                        {
+                            "title": "Simple interface",
+                            "description": "Large buttons, clear labels, and straightforward controls designed for ease of use."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Accessibility Features in Our Platform",
+                    "content": "We've built comprehensive accessibility into every aspect of our service:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "WCAG 2.1 AA Compliance",
+                            "description": "Meets international web accessibility standards for color contrast, keyboard navigation, and screen reader support."
+                        },
+                        {
+                            "title": "Customizable display",
+                            "description": "Adjust font size, line spacing, background color, and text color to match visual needs."
+                        },
+                        {
+                            "title": "Keyboard shortcuts",
+                            "description": "Complete control without mouse: play/pause (Space), skip forward/back (Arrow keys), speed adjust (+/-)."
+                        },
+                        {
+                            "title": "Voice options",
+                            "description": "Multiple neural voices in various languages, accents, and speaking styles."
+                        },
+                        {
+                            "title": "Synchronized highlighting",
+                            "description": "Visual word-by-word or sentence-by-sentence highlighting follows audio playback."
+                        },
+                        {
+                            "title": "Bookmarks and navigation",
+                            "description": "Easy chapter jumping, custom bookmarks, and progress tracking."
+                        },
+                        {
+                            "title": "Offline mode",
+                            "description": "Download audio for use without internet connection - crucial for consistent access."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Real Impact: User Stories",
+                    "content": "Emma, a college student with dyslexia, shares: 'Before TTS, reading a textbook chapter took me 3-4 hours and left me exhausted. Now I listen while following along, finish in 90 minutes, and actually retain what I learned. It's changed my academic life.'",
+                    "type": "paragraph"
+                },
+                {
+                    "content": "David, who lost most of his vision to macular degeneration at age 68, says: 'I thought my reading days were over. TTS gave me back my independence. I'm reading more now than I did before my vision loss.'",
+                    "type": "paragraph"
+                },
+                {
+                    "content": "Maria, an ESL teacher, reports: 'My students' English comprehension improved dramatically when we started using TTS. They can hear proper pronunciation while reading, which accelerates their learning by months.'",
+                    "type": "paragraph"
+                },
+                {
+                    "heading": "Getting Started with Accessible Reading",
+                    "content": "If you or someone you know could benefit from TTS accessibility features:",
+                    "type": "ordered-list",
+                    "items": [
+                        "Start with a familiar document to get comfortable with the interface",
+                        "Experiment with different voices to find one that's easy to understand",
+                        "Adjust speed gradually - start at 1.0x and modify based on comfort",
+                        "Enable visual highlighting if it helps with focus and comprehension",
+                        "Use keyboard shortcuts to reduce physical interaction requirements",
+                        "Create bookmarks at important sections for easy reference",
+                        "Download audio files for offline access when needed"
+                    ]
+                },
+                {
+                    "heading": "Educational Accommodations and IEPs",
+                    "content": "For students with disabilities, TTS is often included in Individualized Education Programs (IEPs) and 504 plans:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "Legally recognized accommodation",
+                            "description": "TTS is accepted as a standard accommodation under ADA and IDEA for students with reading disabilities."
+                        },
+                        {
+                            "title": "Standardized testing",
+                            "description": "Many standardized tests (SAT, ACT, AP exams) allow TTS as an approved accommodation."
+                        },
+                        {
+                            "title": "Documentation support",
+                            "description": "We provide usage reports that can be included in IEP documentation and progress monitoring."
+                        },
+                        {
+                            "title": "Teacher resources",
+                            "description": "Guides for educators on implementing TTS in classroom settings and homework assignments."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Workplace Accessibility",
+                    "content": "TTS isn't just for students - it's crucial for workplace accessibility:",
+                    "type": "list",
+                    "items": [
+                        {
+                            "title": "ADA compliance",
+                            "description": "Employers must provide reasonable accommodations. TTS enables employees with disabilities to access work documents, emails, and reports."
+                        },
+                        {
+                            "title": "Professional development",
+                            "description": "Access training materials, industry publications, and professional literature independently."
+                        },
+                        {
+                            "title": "Productivity boost",
+                            "description": "Review documents while commuting or multitasking, maximizing work efficiency."
+                        },
+                        {
+                            "title": "Equal opportunity",
+                            "description": "Ensures employees with disabilities can compete on equal footing for promotions and opportunities."
+                        }
+                    ]
+                },
+                {
+                    "heading": "Future of Accessible Reading",
+                    "content": "TTS technology continues to evolve with exciting developments on the horizon:",
+                    "type": "list",
+                    "items": [
+                        "More natural, expressive voices that convey emotion and emphasis",
+                        "AI-powered pronunciation of technical terms and proper nouns",
+                        "Real-time translation with TTS for multilingual accessibility",
+                        "Integration with AR glasses for hands-free reading assistance",
+                        "Personalized voice profiles that learn individual preferences"
+                    ]
+                },
+                {
+                    "content": "Text-to-speech technology represents more than just a convenience - it's a fundamental tool for inclusion and equal access. By removing barriers to reading, TTS empowers millions of people to learn, work, and engage with written content on their own terms.",
+                    "type": "paragraph"
+                },
+                {
+                    "heading": "Resources and Support",
+                    "content": "Additional resources for accessibility:",
+                    "type": "list",
+                    "items": [
+                        "Learning Ally - Audiobooks for students with disabilities",
+                        "Bookshare - Accessible library for people with print disabilities",
+                        "International Dyslexia Association - Research and support",
+                        "National Federation of the Blind - Assistive technology resources",
+                        "Understood.org - Learning and attention issues support"
+                    ]
+                }
+            ],
+            "relatedGuides": [
+                "text-to-speech-learning-retention",
+                "document-to-audio-conversion-guide"
+            ],
+            "callToAction": {
+                "text": "Experience accessible reading with our TTS technology",
+                "buttonText": "Try Free Accessibility Features",
+                "buttonLink": "/dashboard"
+            }
+        }

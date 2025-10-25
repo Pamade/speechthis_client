@@ -1,0 +1,30 @@
+.backButton {
+    background: white;
+
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    // height: 3rem;
+    text-align: center;
+
+    color: #667eea;
+    border: 2px solid rgba(103, 232, 249, 0.5);
+    // padding: 0.5rem 1rem;
+    text-align: center;
+    // line-height: 25%;
+    margin: 1rem 0;
+    // box-sizing: border-box;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        // background-color: red;
+
+    }
+
+    .arrow {
+        // display: none;
+    }
+}

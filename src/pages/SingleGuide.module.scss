@@ -1,0 +1,347 @@
+.singleGuide {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+
+
+.article {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.header {
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.category {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.date,
+.readTime {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.heroImage {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.content {
+    padding: 3rem 2rem;
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 2.5rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #667eea;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #333;
+        margin: 2rem 0 1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.sectionImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.2s ease-out;
+}
+
+.sectionImageContainer {
+    height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.list,
+.orderedList {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+
+    li {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 1rem;
+
+        strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+    }
+}
+
+.orderedList {
+    counter-reset: item;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        counter-increment: item;
+        position: relative;
+        padding-left: 3rem;
+
+        &::before {
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.cta {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: white;
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        border: none;
+        padding: 0;
+    }
+}
+
+.ctaButton {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+}
+
+.relatedGuides {
+    padding: 3rem 2rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 2rem;
+        text-align: center;
+        border: none;
+        padding: 0;
+    }
+}
+
+.relatedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.relatedCard {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        padding: 1rem 1.5rem 0.5rem;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    p {
+        font-size: 0.95rem;
+        color: #666;
+        padding: 0 1.5rem 1.5rem;
+        margin: 0;
+        line-height: 1.5;
+    }
+}
+
+.notFound {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem;
+
+    h1 {
+        font-size: 2.5rem;
+        color: #1a1a1a;
+        margin-bottom: 2rem;
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .singleGuide {
+        padding: 1rem 0.5rem;
+    }
+
+    .article {
+        border-radius: 0;
+    }
+
+    .header {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .heroImage {
+        height: 250px;
+        border-radius: 8px;
+    }
+
+    .content {
+        padding: 2rem 1.5rem;
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    .meta {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .relatedGuides {
+        padding: 2rem 1.5rem;
+    }
+
+    .relatedGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .cta {
+        padding: 2rem 1.5rem;
+
+        h2 {
+            font-size: 1.4rem;
+        }
+    }
+
+    .ctaButton {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+}

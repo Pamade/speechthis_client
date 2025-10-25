@@ -37,6 +37,12 @@ export const Navigation = () => {
   const content_logged_in = (
     <>
       <Link
+        to="/guides"
+        className={`${styles.menuItem} ${location.pathname === '/guides' ? styles.active : ''}`}
+      >
+        Guides
+      </Link>
+      <Link
         to="/profile"
         className={`${styles.menuItem} ${location.pathname === '/profile' ? styles.active : ''}`}
       >
@@ -66,7 +72,12 @@ export const Navigation = () => {
 
   const content_logged_out = (
     <>
-
+      <Link
+        to="/guides"
+        className={`${styles.menuItem} ${location.pathname === '/profile' ? styles.active : ''}`}
+      >
+        Guides
+      </Link>
       <Link
         to="/pricing"
         className={`${styles.menuItem} ${location.pathname === '/pricing' ? styles.active : ''}`}
@@ -78,6 +89,12 @@ export const Navigation = () => {
         className={`${styles.menuItem} ${location.pathname === '/login' ? styles.active : ''}`}
       >
         Login
+      </Link>
+      <Link
+        to="/register"
+        className={`${styles.menuItem} ${location.pathname === '/register' ? styles.active : ''}`}
+      >
+        Register
       </Link>
     </>
   )
