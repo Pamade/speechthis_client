@@ -7,9 +7,11 @@ import { domain } from '../utils/other';
 
 export function Pricing() {
   const navigate = useNavigate();
-  const [transferAmount, setTransferAmount] = useState<number>(100);
-  const [inputValue, setInputValue] = useState<string>("100");
+  const [transferAmount, setTransferAmount] = useState<number>(7);
+  const [inputValue, setInputValue] = useState<string>("7");
   const PRICE_PER_MB = 0.15;
+  const MIN_MB = 7;
+  const MAX_MB = 2000;
   const [isLoading, setIsLoading] = useState(false);
 
   const calculatePrice = (mb: number): number => {
@@ -88,8 +90,8 @@ export function Pricing() {
               <div className={styles.inputGroup}>
                 <input
                   type="number"
-                  min="10"
-                  max="2000"
+                  min={MIN_MB}
+                  max={MAX_MB}
                   value={inputValue}
                   onKeyDown={(e) => {
                     if (!/[\d\b]/.test(e.key) &&
@@ -102,18 +104,18 @@ export function Pricing() {
                     setInputValue(value);
 
                     const numValue = Number(value);
-                    if (!isNaN(numValue) && numValue >= 10 && numValue <= 2000) {
+                    if (!isNaN(numValue) && numValue >= MIN_MB && numValue <= MAX_MB) {
                       setTransferAmount(numValue);
                     }
                   }}
                   onBlur={() => {
                     const numValue = Number(inputValue);
-                    if (isNaN(numValue) || numValue < 10) {
-                      setInputValue('10');
-                      setTransferAmount(10);
-                    } else if (numValue > 2000) {
-                      setInputValue('2000');
-                      setTransferAmount(2000);
+                    if (isNaN(numValue) || numValue < MIN_MB) {
+                      setInputValue(MIN_MB.toString());
+                      setTransferAmount(MIN_MB);
+                    } else if (numValue > MAX_MB) {
+                      setInputValue(MAX_MB.toString());
+                      setTransferAmount(MAX_MB);
                     } else {
                       const roundedValue = Math.floor(numValue);
                       setInputValue(roundedValue.toString());
@@ -127,8 +129,8 @@ export function Pricing() {
             </div>
             <input
               type="range"
-              min="3"
-              max="2000"
+              min={MIN_MB}
+              max={MAX_MB}
               value={transferAmount}
               onChange={(e) => {
                 const value = Number(e.target.value);
@@ -138,8 +140,8 @@ export function Pricing() {
               className={styles.slider}
             />
             <div className={styles.sliderLabels}>
-              <span>3MB</span>
-              <span>2GB</span>
+              <span>{MIN_MB}MB</span>
+              <span>{MAX_MB / 1000}GB</span>
             </div>
           </div>
 
