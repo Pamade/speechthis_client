@@ -127,7 +127,7 @@ export function Pricing() {
             </div>
             <input
               type="range"
-              min="10"
+              min="3"
               max="2000"
               value={transferAmount}
               onChange={(e) => {
@@ -138,7 +138,7 @@ export function Pricing() {
               className={styles.slider}
             />
             <div className={styles.sliderLabels}>
-              <span>10MB</span>
+              <span>3MB</span>
               <span>2GB</span>
             </div>
           </div>

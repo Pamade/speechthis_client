@@ -1,0 +1,95 @@
+.container {
+    width: 100%;
+}
+
+.errorContainer {
+    height: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.error {
+    background: rgba(220, 38, 38, 0.1);
+    color: #ef4444;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+    letter-spacing: 0.3px;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow:
+            0 4px 20px rgba(239, 68, 68, 0.1),
+            inset 0 0 15px rgba(239, 68, 68, 0.05);
+    }
+}
+
+.googleButtonWrapper {
+    margin: 1rem 0;
+}
+
+// .googleButton {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100% !important;
+
+//     // Style the Google button wrapper
+//     >div {
+//         width: 100%;
+//         display: flex;
+//         justify-content: center;
+
+//         button {
+//             width: 100% !important;
+//             max-width: 100% !important;
+//             border-radius: 12px !important;
+//             border: 1px solid rgba(103, 232, 249, 0.3) !important;
+//             background: rgba(13, 13, 24, 0.7) !important;
+//             backdrop-filter: blur(10px);
+//             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+//             box-shadow: 0 0 15px rgba(103, 232, 249, 0.1) !important;
+
+//             &:hover {
+//                 border-color: rgba(103, 232, 249, 0.5) !important;
+//                 transform: translateY(-2px);
+//                 box-shadow:
+//                     0 4px 20px rgba(103, 232, 249, 0.2) inset 0 0 15px rgba(103, 232, 249, 0.1) !important;
+//             }
+
+//             &:active {
+//                 transform: translateY(-1px);
+//             }
+//         }
+//     }
+// }
+
+.loading {
+    margin-top: 1rem;
+    text-align: center;
+    color: rgba(103, 232, 249, 0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 10px rgba(103, 232, 249, 0.2);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

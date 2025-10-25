@@ -3,6 +3,7 @@ import type { FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useUser } from '../../../context/UserContext';
 import styles from './LoginForm.module.scss';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ export function LoginForm() {
   // Handle error visibility with delay
   useEffect(() => {
     let timeoutId: number;
-    
+
     if (error) {
       timeoutId = window.setTimeout(() => {
         setIsErrorVisible(true);
@@ -60,7 +61,7 @@ export function LoginForm() {
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h2>Login</h2>
-        
+
         <div className={styles.errorContainer}>
           {error && (
             <div className={`${styles.error} ${isErrorVisible ? styles.visible : ''}`}>
@@ -68,7 +69,7 @@ export function LoginForm() {
             </div>
           )}
         </div>
-        
+
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input
@@ -94,7 +95,7 @@ export function LoginForm() {
         <button type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
-
+        <GoogleLogin />
         <div className={styles.links}>
           <Link to="/register">Don't have an account? Register</Link>
           <Link to="/forgot-password">Forgot password?</Link>
