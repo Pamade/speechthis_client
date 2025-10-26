@@ -193,6 +193,29 @@ export function Dashboard() {
   const [readingCurrentPage, setReadingCurrentPage] = useState(1);
   const [isLoadingReadingFiles, setIsLoadingReadingFiles] = useState(false);
 
+  useEffect(() => {
+    if (isUploadModalOpen) {
+      // Disable scroll on both body and html elements
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+
+      // Prevent layout shift from scrollbar disappearing
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      // Re-enable scroll
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isUploadModalOpen]);
+
   // Fetch reading files from backend
   const fetchReadingFiles = async () => {
     setIsLoadingReadingFiles(true);

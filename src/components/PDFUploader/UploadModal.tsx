@@ -72,6 +72,8 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
     const [isLoading, setIsLoading] = useState(false);
     const [disabledAfterCancel, setDisabledAfterCancel] = useState(false);
 
+
+
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
