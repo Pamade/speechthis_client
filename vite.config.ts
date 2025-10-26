@@ -7,14 +7,25 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      'pdfjs-dist/build/pdf.worker.min.js': 'pdfjs-dist/build/pdf.worker.mjs'
+      'pdfjs-dist/build/pdf.worker.min.js': 'pdfjs-dist/build/pdf.worker.mjs',
+      // Fix: Remove trailing slash
+      buffer: 'buffer'
     }
   },
 
+  define: {
+    // Define global for browser compatibility
+    global: 'globalThis',
+  },
+
   optimizeDeps: {
-    include: ['pdfjs-dist', 'react', 'react-dom', 'react-router-dom'],
+    include: ['pdfjs-dist', 'react', 'react-dom', 'react-router-dom', 'buffer'],
     esbuildOptions: {
-      target: 'esnext'
+      target: 'esnext',
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis',
+      },
     }
   },
 
@@ -60,6 +71,10 @@ export default defineConfig({
             if (id.includes('react-router')) {
               return 'router'
             }
+            // Buffer polyfill osobno
+            if (id.includes('buffer')) {
+              return 'polyfills'
+            }
             // Reszta vendors
             return 'vendor'
           }
@@ -79,5 +94,3 @@ export default defineConfig({
     reportCompressedSize: true
   }
 })
-
-
