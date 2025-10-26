@@ -1,17 +1,19 @@
-import { useEffect, useState, useContext } from 'react';
-import { PDFUploader } from '../components/PDFUploader/PDFUploader';
-import { GoogleVoiceSelector } from '../components/GoogleVoiceSelector/GoogleVoiceSelector';
+import { useEffect, useState, useContext, lazy, Suspense } from 'react';
 import { instanceNoAuth } from '../utils/axiosInstance';
 import { formatFileSize } from '../utils/fileUtils';
 import { extractTextFromPDF } from '../utils/pdfUtils';
 import styles from './Home.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { Document, Page, pdfjs } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { useDownload } from '../context/DownloadContext';
 import { UserContext } from '../context/UserContext';
 import { domain } from '../utils/other';
+import samplePDF from '/documents/sample.pdf?url';
+
+const Document = lazy(() => import('react-pdf').then(module => ({ default: module.Document })));
+const Page = lazy(() => import('react-pdf').then(module => ({ default: module.Page })));
 
 // Set up PDF.js worker with error handling
 try {
@@ -199,67 +201,120 @@ export function Home() {
   }, [windowWidth]);
 
   // Load sample PDF for demo
+  // useEffect(() => {
+  //   const loadSamplePdf = async () => {
+  //     try {
+  //       setIsPdfLoading(true);
+  //       setPdfLoadError(false);
+
+  //       // Use resource hints for better performance
+  //       const link = document.createElement('link');
+  //       link.rel = 'preload';
+  //       link.as = 'fetch';
+  //       link.href = '/documents/sample.pdf';
+  //       document.head.appendChild(link);
+
+  //       const response = await fetch('/documents/sample.pdf', {
+  //         // Use default priority - browser will handle it optimally
+  //         cache: 'force-cache' // Cache aggressively
+  //       });
+
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch PDF');
+  //       }
+
+  //       const arrayBuffer = await response.arrayBuffer();
+  //       setSamplePdfData(arrayBuffer);
+
+  //       // Create blob URL for rendering
+  //       const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+  //       const url = URL.createObjectURL(blob);
+  //       setPdfUrl(url);
+  //       setIsPdfLoading(false);
+
+  //       // Extract text in idle time (won't block main thread)
+  //       if ('requestIdleCallback' in window) {
+  //         requestIdleCallback(() => extractTextInBackground(blob));
+  //       } else {
+  //         setTimeout(() => extractTextInBackground(blob), 100);
+  //       }
+
+  //     } catch (error) {
+  //       console.error('Failed to load sample PDF:', error);
+  //       setPdfLoadError(true);
+  //       setIsPdfLoading(false);
+  //       setPreviewText('Welcome! This is a preview of how this voice sounds.');
+  //     }
+  //   };
+
+  //   loadSamplePdf();
+
+  //   return () => {
+  //     if (pdfUrl) {
+  //       URL.revokeObjectURL(pdfUrl);
+  //     }
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const loadSamplePdf = async () => {
+    // Set the PDF URL directly from import
+    setPdfUrl(samplePDF);
+    setIsPdfLoading(false);
+
+    // Extract preview text (keep this part)
+    const extractPreview = async () => {
       try {
-        setIsPdfLoading(true);
-        setPdfLoadError(false);
-        const response = await fetch('/documents/sample.pdf');
-        if (!response.ok) {
-          throw new Error('Failed to fetch PDF');
-        }
+        const response = await fetch(samplePDF);
         const arrayBuffer = await response.arrayBuffer();
-        // Store ArrayBuffer for conversion functionality
         setSamplePdfData(arrayBuffer);
 
-        // Extract preview text from first page
-        try {
-          const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-          const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
-          const pages = await extractTextFromPDF(file);
-
-          if (pages.length > 0) {
-            // Get first ~150 characters for preview
-            const firstPageText = pages[0].text.trim();
-            const previewLength = Math.min(150, firstPageText.length);
-            let preview = firstPageText.substring(0, previewLength);
-
-            // Try to end at a word boundary
-            const lastSpace = preview.lastIndexOf(' ');
-            if (lastSpace > 100) {
-              preview = preview.substring(0, lastSpace);
-            }
-
-            setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
-          } else {
-            // Fallback if extraction fails
-            setPreviewText('Welcome! This is a preview of how this voice sounds. You can use this voice to convert your documents to audio.');
-          }
-        } catch (extractError) {
-          console.error('Failed to extract preview text:', extractError);
-          // Use fallback text
-          setPreviewText('Welcome! This is a preview of how this voice sounds. You can use this voice to convert your documents to audio.');
-        }
-
-        // Create a Blob URL for stable PDF rendering (won't be detached on re-render)
         const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        if (pdfUrl === null) {
-          setPdfUrl(url);
-        }
+        const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
+        const pages = await extractTextFromPDF(file);
 
-        setIsPdfLoading(false);
+        if (pages.length > 0) {
+          const firstPageText = pages[0].text.trim();
+          const previewLength = Math.min(150, firstPageText.length);
+          let preview = firstPageText.substring(0, previewLength);
+          const lastSpace = preview.lastIndexOf(' ');
+          if (lastSpace > 100) {
+            preview = preview.substring(0, lastSpace);
+          }
+          setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
+        } else {
+          setPreviewText('Welcome! This is a preview of how this voice sounds.');
+        }
       } catch (error) {
-        console.error('Failed to load sample PDF:', error);
-        setPdfLoadError(true);
-        setIsPdfLoading(false);
-        // Use fallback text even if PDF fails to load
-        setPreviewText('Welcome! This is a preview of how this voice sounds. You can use this voice to convert your documents to audio.');
+        console.error('Failed to extract preview:', error);
+        setPreviewText('Welcome! This is a preview of how this voice sounds.');
       }
     };
-    loadSamplePdf();
-    console.log("Loading..")
+
+    extractPreview();
   }, []);
+
+  const extractTextInBackground = async (blob: Blob) => {
+    try {
+      const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
+      const pages = await extractTextFromPDF(file);
+
+      if (pages.length > 0) {
+        const firstPageText = pages[0].text.trim();
+        const previewLength = Math.min(150, firstPageText.length);
+        let preview = firstPageText.substring(0, previewLength);
+
+        const lastSpace = preview.lastIndexOf(' ');
+        if (lastSpace > 100) {
+          preview = preview.substring(0, lastSpace);
+        }
+
+        setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
+      }
+    } catch (extractError) {
+      console.error('Failed to extract preview text:', extractError);
+      setPreviewText('Welcome! This is a preview of how this voice sounds.');
+    }
+  };
 
   // Cleanup blob URL on unmount
   useEffect(() => {
@@ -790,7 +845,7 @@ export function Home() {
                           </div>
                         </div>
 
-                        <div className={styles.documentPreview}>
+                        {/* <div className={styles.documentPreview}>
                           {pdfUrl ? (
                             <Document
                               key="sample-pdf-card"
@@ -821,7 +876,7 @@ export function Home() {
                           ) : (
                             <div className={styles.pdfLoading}>PDF not available</div>
                           )}
-                        </div>
+                        </div> */}
                       </>
                     )}
 

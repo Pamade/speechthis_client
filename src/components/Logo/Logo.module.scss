@@ -28,67 +28,54 @@
 
 .logoSpeech {
     font-weight: 700;
-    background: linear-gradient(
-        90deg,
-        #a855f7 0%,
-        #ec4899 25%,
-        #22d3ee 50%,
-        #a855f7 75%,
-        #ec4899 100%
-    );
+    background: linear-gradient(90deg,
+            #a855f7 0%,
+            #ec4899 25%,
+            #22d3ee 50%,
+            #a855f7 75%,
+            #ec4899 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-shift 3s ease-in-out infinite;
+    // animation: gradient-shift 3s ease-in-out infinite;
     filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
 }
 
 .logoThis {
     font-weight: 700;
-    background: linear-gradient(
-        90deg,
-        #ffffff 0%,
-        #67e8f9 50%,
-        #ffffff 100%
-    );
+    background: linear-gradient(90deg,
+            #ffffff 0%,
+            #67e8f9 50%,
+            #ffffff 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-shift 3s ease-in-out infinite reverse;
     filter: drop-shadow(0 0 6px rgba(103, 232, 249, 0.4));
 }
 
-.logo:hover .logoSpeech {
-    animation: gradient-shift 1.5s ease-in-out infinite,
-               pulse-glow 1s ease-in-out infinite;
-}
 
-.logo:hover .logoThis {
-    animation: gradient-shift 1.5s ease-in-out infinite reverse,
-               pulse-glow 1s ease-in-out infinite;
-}
-
-@keyframes gradient-shift {
-    0% {
-        background-position: 0% center;
-    }
-    50% {
-        background-position: 100% center;
-    }
-    100% {
-        background-position: 0% center;
-    }
-}
+// @keyframes gradient-shift {
+//     0% {
+//         background-position: 0% center;
+//     }
+//     50% {
+//         background-position: 100% center;
+//     }
+//     100% {
+//         background-position: 0% center;
+//     }
+// }
 
 @keyframes pulse-glow {
-    0%, 100% {
-        filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6))
-                drop-shadow(0 0 12px rgba(236, 72, 153, 0.4));
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6)) drop-shadow(0 0 12px rgba(236, 72, 153, 0.4));
     }
+
     50% {
-        filter: drop-shadow(0 0 16px rgba(168, 85, 247, 1))
-                drop-shadow(0 0 24px rgba(236, 72, 153, 0.8));
+        filter: drop-shadow(0 0 16px rgba(168, 85, 247, 1)) drop-shadow(0 0 24px rgba(236, 72, 153, 0.8));
     }
 }
