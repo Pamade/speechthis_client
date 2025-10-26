@@ -464,7 +464,7 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
                     }} className={styles.closeButton}>×</button>
                 </div>
 
-                <div className={styles.infoSection}>
+                {/* <div className={styles.infoSection}>
                     <div className={styles.infoText}>
                         After successful generation, the file will be:
                         <ul>
@@ -472,7 +472,7 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
                             <li>Transfer will be taken from your available balance</li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
 
                 <div className={styles.modalBody}>
                     <div className={styles.uploadSection}>
@@ -577,13 +577,13 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
                                     )}
                                 </button>
                             </div>
-                            <div className={styles.textContent} style={{
+                            {/* <div className={styles.textContent} style={{
                                 overflowX: 'hidden',
                                 whiteSpace: 'pre-wrap',
                                 wordWrap: 'break-word'
                             }}>
                                 {fileContent}
-                            </div>
+                            </div> */}
                         </div>
                     )}
                 </div>
