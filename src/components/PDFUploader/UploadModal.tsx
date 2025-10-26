@@ -610,12 +610,13 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
                                 {isProcessing ? 'Processing...' : disabledAfterCancel ? 'Please wait...' : 'Upload and Generate'}
                             </button>
                         ) : (
-                            <Link
-                                to="/pricing"
-                                className={`${styles.button} ${styles.primaryButton} ${styles.insufficientTransfer}`}
-                            >
-                                INSUFFICIENT TRANSFER ({(selectedFile.size / (1024 * 1024)).toFixed(2)}MB needed)
-                            </Link>
+                            <button className={`${styles.button} ${styles.primaryButton} ${styles.insufficientTransfer}`}>
+                                <Link
+                                    to="/pricing"
+                                >
+                                    INSUFFICIENT TRANSFER ({(selectedFile.size / (1024 * 1024)).toFixed(2)}MB needed)
+                                </Link>
+                            </button>
                         )
                     ) : (
                         <button

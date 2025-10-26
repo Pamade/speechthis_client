@@ -992,21 +992,9 @@ export function Home() {
                       </button>
                     </div>
 
-                    {sampleProgress && (
-                      <div className={styles.progressInfo}>
-                        <div className={styles.progressText}>
-                          {sampleProgress.status}
-                        </div>
-                        {sampleProgress.totalChunks > 0 && (
-                          <div className={styles.progressBarContainer}>
-                            <div
-                              className={styles.progressBar}
-                              style={{ width: `${(sampleProgress.currentChunk / sampleProgress.totalChunks) * 100}%` }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                    {sampleProgress &&
+                      null
+                    }
                   </div>
                 </div>
               ) : (

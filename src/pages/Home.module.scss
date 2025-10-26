@@ -1478,6 +1478,8 @@
       transition: all 0.3s ease;
       text-decoration: none;
       font-size: 1rem;
+      box-sizing: border-box !important;
+      text-wrap: nowrap;
 
       &:hover {
         transform: translateY(-2px);
@@ -1496,6 +1498,7 @@
       transition: all 0.3s ease;
       text-decoration: none;
       font-size: 1rem;
+      box-sizing: border-box;
 
       &:hover {
         background: rgba(103, 232, 249, 0.1);
