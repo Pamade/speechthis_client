@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { FormEvent } from 'react';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { useNavigate, Link } from 'react-router-dom';
 import { useUser } from '../../../context/UserContext';
 import styles from './RegisterForm.module.scss';
@@ -24,7 +24,7 @@ export function RegisterForm() {
   // Handle error visibility with delay
   useEffect(() => {
     let timeoutId: number;
-    
+
     if (error) {
       timeoutId = window.setTimeout(() => {
         setIsErrorVisible(true);
@@ -61,7 +61,7 @@ export function RegisterForm() {
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h2>Register</h2>
-        
+
         <div className={styles.errorContainer}>
           {error && (
             <div className={`${styles.error} ${isErrorVisible ? styles.visible : ''}`}>
@@ -69,7 +69,7 @@ export function RegisterForm() {
             </div>
           )}
         </div>
-        
+
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input
@@ -106,7 +106,7 @@ export function RegisterForm() {
         <button type="submit" disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </button>
-
+        <GoogleLogin />
         <div className={styles.links}>
           <Link to="/login">Already have an account? Login</Link>
         </div>

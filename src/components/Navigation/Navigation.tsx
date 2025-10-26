@@ -13,6 +13,8 @@ export const Navigation = () => {
   const { downloadState, forceStopProcessing } = useDownload();
 
   const handleLogout = () => {
+    // Check if there's a file being processed while logging out
+    setIsMenuOpen(false);
     if (downloadState.isProcessing) {
       const confirmed = window.confirm(
         "You have a file being processed. If you logout now, the process will be lost. Are you sure you want to logout?"
@@ -44,23 +46,27 @@ export const Navigation = () => {
       </Link>
       <Link
         to="/profile"
+        onClick={() => setIsMenuOpen(false)}
         className={`${styles.menuItem} ${location.pathname === '/profile' ? styles.active : ''}`}
       >
         Profile
       </Link>
       <Link
+        onClick={() => setIsMenuOpen(false)}
         to="/pricing"
         className={`${styles.menuItem} ${location.pathname === '/pricing' ? styles.active : ''}`}
       >
         Pricing
       </Link>
       <Link
+        onClick={() => setIsMenuOpen(false)}
         to="/dashboard"
         className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.active : ''}`}
       >
         Dashboard
       </Link>
       <Link
+
         onClick={handleLogout}
         to="/"
         className={`${styles.menuItem}`}
@@ -74,23 +80,27 @@ export const Navigation = () => {
     <>
       <Link
         to="/guides"
+
         className={`${styles.menuItem} ${location.pathname === '/profile' ? styles.active : ''}`}
       >
         Guides
       </Link>
       <Link
         to="/pricing"
+        onClick={() => setIsMenuOpen(false)}
         className={`${styles.menuItem} ${location.pathname === '/pricing' ? styles.active : ''}`}
       >
         Pricing
       </Link>
       <Link
+        onClick={() => setIsMenuOpen(false)}
         to="/login"
         className={`${styles.menuItem} ${location.pathname === '/login' ? styles.active : ''}`}
       >
         Login
       </Link>
       <Link
+        onClick={() => setIsMenuOpen(false)}
         to="/register"
         className={`${styles.menuItem} ${location.pathname === '/register' ? styles.active : ''}`}
       >
@@ -104,7 +114,7 @@ export const Navigation = () => {
     <nav className={styles.nav}>
 
       <div className={styles.container}>
-        <Logo />
+        <span onClick={() => setIsMenuOpen(false)}><Logo /></span>
         {/* <svg className={styles.logoImage}src xmlns="http://www.w3.org/2000/svg"></svg> */}
 
         <button
