@@ -16,6 +16,7 @@ const Document = lazy(() => import('react-pdf').then(module => ({ default: modul
 const Page = lazy(() => import('react-pdf').then(module => ({ default: module.Page })));
 
 // Set up PDF.js worker with error handling
+
 try {
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.mjs',
@@ -26,6 +27,8 @@ try {
   // Fallback to CDN version
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 }
+
+
 
 interface PDFPage {
   pageNumber: number;
@@ -1125,7 +1128,8 @@ export function Home() {
                 <div className={styles.stepNumber}>1</div>
                 <div className={styles.stepIcon}>📤</div>
                 <h3>Upload Your Document</h3>
-                <p>Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple formats and languages.</p>
+                <p>Upload PDF, DOCX, EPUB, or TXT files.</p>
+                {/* Our system supports multiple formats and languages. */}
               </div>
               <div className={styles.stepArrow}>→</div>
               <div className={styles.stepCard}>

@@ -61,17 +61,6 @@ function App() {
       resizeObserver.disconnect();
     };
   }, []);
-  // const [azureToken, setAzureToken] = useState<string>("");
-
-  // useEffect(() => {
-  //   const test = async () => {
-  //     const response = await instance.post('/azure-tts/get-token');
-  //     console.log(response)
-  //     setAzureToken(response.data.token);
-  //   }
-
-  //   test()
-  // }, [])
 
 
   return (
