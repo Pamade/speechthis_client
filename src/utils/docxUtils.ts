@@ -1,10 +1,6 @@
-import * as mammoth from 'mammoth';
-import { parseStringPromise } from 'xml2js';
-import JSZip from 'jszip';
-import { Packer, Document, Paragraph } from 'docx';
-
-
 export const extractTextFromDOCX = async (file: File): Promise<string> => {
+    const mammoth = await import('mammoth');
+
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = async (e) => {
@@ -23,6 +19,8 @@ export const extractTextFromDOCX = async (file: File): Promise<string> => {
 
 
 export const extractHTMLFromDOCX = async (file: File): Promise<string> => {
+    const mammoth = await import('mammoth');
+
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = async (e) => {

@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
 import { instance, instanceNoAuth } from '../utils/axiosInstance';
+type SpeechSDKType = typeof import('microsoft-cognitiveservices-speech-sdk');
 
 export interface WordBoundary {
   word: string;
@@ -76,7 +76,7 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
 
   // Fixed timing refs
   const chunkStartTimeRef = useRef<number>(0); // When current chunk started playing
-  const synthesizerRef = useRef<SpeechSDK.SpeechSynthesizer | null>(null);
+  const synthesizerRef = useRef<any | null>(null);
   const pausedChunkIndexRef = useRef<number>(0);
   const pausedTimeInChunkRef = useRef<number>(0);
   const currentChunkStartOffsetRef = useRef<number>(0); // offset used when starting current chunk
@@ -90,6 +90,17 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
   }, [options]);
 
   // 4. Chunked synthesis refs
+  const speechSDKRef = useRef<SpeechSDKType | null>(null);
+
+  const getSpeechSDK = useCallback(async (): Promise<SpeechSDKType> => {
+    if (!speechSDKRef.current) {
+      console.log('📦 Loading Speech SDK...');
+      speechSDKRef.current = await import('microsoft-cognitiveservices-speech-sdk');
+      console.log('✅ Speech SDK loaded');
+    }
+    return speechSDKRef.current;
+  }, []);
+
   const textRef = useRef<string>('');
   const chunksRef = useRef<TextChunk[]>([]);
   const chunkBuffersRef = useRef<Map<number, ChunkBuffer>>(new Map());
@@ -119,7 +130,6 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        // Use different endpoint based on mode
         const endpoint = options.sampleMode ? '/public/sample/get-token' : '/azure-tts/get-token';
         const axiosInstance = options.sampleMode ? instanceNoAuth : instance;
 
@@ -130,6 +140,9 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
           azureTokenRef.current = response.data.token;
           azureRegionRef.current = response.data.region || 'westeurope';
           console.log('✅ Azure token fetched successfully');
+
+          // Preload SDK after token is ready
+          getSpeechSDK();
         }
       } catch (error) {
         console.error('❌ Failed to fetch Azure token:', error);
@@ -138,7 +151,7 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
     };
 
     fetchToken();
-  }, [options.sampleMode]);
+  }, [options.sampleMode, getSpeechSDK]);
 
   // No duration estimation logic
 
@@ -881,6 +894,7 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
   }, [cleanup]);
 
   const synthesizeChunk = useCallback(async (chunkIndex: number): Promise<void> => {
+
     const chunk = chunksRef.current[chunkIndex];
     if (!chunk) {
       console.error(`❌ Chunk ${chunkIndex} not found. Available chunks: ${chunksRef.current.length}`);
@@ -898,6 +912,9 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
     if (!audioContextRef.current) {
       throw new Error('Audio context not available');
     }
+
+    const SpeechSDK = await getSpeechSDK();
+
 
     // Create mapping from original text positions to normalized positions within this chunk
     const createNormalizedMapping = (originalText: string) => {
@@ -955,7 +972,11 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
     }; const normalizedMapping = createNormalizedMapping(chunk.text);
 
     return new Promise((resolve, reject) => {
-      const speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(azureTokenRef.current!, azureRegionRef.current);
+      const speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(
+        azureTokenRef.current!,
+        azureRegionRef.current
+      );
+      // const speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(azureTokenRef.current!, azureRegionRef.current);
       // Use voice override if available, otherwise fall back to options
       const voiceToUse = voiceOverrideRef.current || optionsRef.current.voice || 'en-US-JennyNeural';
       speechConfig.speechSynthesisVoiceName = voiceToUse;
@@ -1058,7 +1079,7 @@ export const useAzureTTS = (options: UseAzureTTSOptions = {}) => {
         }
       );
     });
-  }, []);
+  }, [getSpeechSDK]);
 
   // Map absolute text offset to playback by using chunk boundaries
   const seekToTextOffset = useCallback(async (textOffset: number) => {
