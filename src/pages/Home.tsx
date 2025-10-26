@@ -1,31 +1,32 @@
-import { useEffect, useState, useContext, lazy, Suspense } from 'react';
+import { useEffect, useState, useContext, lazy, Suspense, useRef } from 'react';
 import { instanceNoAuth } from '../utils/axiosInstance';
 import { formatFileSize } from '../utils/fileUtils';
 import { extractTextFromPDF } from '../utils/pdfUtils';
 import styles from './Home.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
+// import { pdfjs } from "react-pdf";
+// import 'react-pdf/dist/Page/AnnotationLayer.css';
+// import 'react-pdf/dist/Page/TextLayer.css';
 import { useDownload } from '../context/DownloadContext';
 import { UserContext } from '../context/UserContext';
 import { domain } from '../utils/other';
 import samplePDF from '/documents/sample.pdf?url';
+import type { DocumentProps, PageProps } from 'react-pdf';
 
-const Document = lazy(() => import('react-pdf').then(module => ({ default: module.Document })));
-const Page = lazy(() => import('react-pdf').then(module => ({ default: module.Page })));
+// const Document = lazy(() => import('react-pdf').then(module => ({ default: module.Document })));
+// const Page = lazy(() => import('react-pdf').then(module => ({ default: module.Page })));
 
-// Set up PDF.js worker with error handling
-try {
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.mjs',
-    import.meta.url
-  ).toString();
-} catch (error) {
-  console.error('Failed to set PDF worker:', error);
-  // Fallback to CDN version
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-}
+// // Set up PDF.js worker with error handling
+// try {
+//   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//     'pdfjs-dist/build/pdf.worker.mjs',
+//     import.meta.url
+//   ).toString();
+// } catch (error) {
+//   console.error('Failed to set PDF worker:', error);
+//   // Fallback to CDN version
+//   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// }
 
 interface PDFPage {
   pageNumber: number;
@@ -147,6 +148,9 @@ export function Home() {
   const [currentFile, setCurrentFile] = useState<File | null>(null);
   const [fileSize, setFileSize] = useState<string>('');
   const [isShowingAuthModal, setIsShowingAuthModal] = useState(false);
+  const [Document, setDocument] = useState<React.ComponentType<DocumentProps> | null>(null);
+  const [Page, setPage] = useState<React.ComponentType<PageProps> | null>(null);
+  const pdfLibLoadedRef = useRef(false);
 
   // Demo section state
   const [samplePdfData, setSamplePdfData] = useState<ArrayBuffer | null>(null);
@@ -181,23 +185,69 @@ export function Home() {
     { name: 'de-DE-Chirp3-HD-Achernar', label: 'Hannah (German)', language: 'German', languageCode: 'de-DE' },
   ];
 
-  // Track window width for responsive layout
+
+
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = async () => {
       const newWidth = window.innerWidth;
       setWindowWidth(newWidth);
 
-      // Adjust PDF scale when crossing tablet breakpoint
+      // -----------------------------
+      // Adjust PDF scale for tablet
+      // -----------------------------
       if (newWidth >= 570 && newWidth < 768) {
-        // Entering tablet range - set to 60% if currently at desktop 100%
-        setPdfScale(prev => prev === 1.0 ? 0.6 : prev);
-      } else if (windowWidth >= 570 && windowWidth < 768 && (newWidth < 570 || newWidth >= 768)) {
-        // Leaving tablet range - reset to 100% if currently at tablet 60%
-        setPdfScale(prev => prev === 0.6 ? 1.0 : prev);
+        setPdfScale((prev) => (prev === 1.0 ? 0.6 : prev));
+      } else if (
+        windowWidth >= 570 &&
+        windowWidth < 768 &&
+        (newWidth < 570 || newWidth >= 768)
+      ) {
+        setPdfScale((prev) => (prev === 0.6 ? 1.0 : prev));
+      }
+
+      // -----------------------------
+      // Load react-pdf + PDF file dynamically (desktop only)
+      // -----------------------------
+      if (newWidth >= 768 && !pdfLibLoadedRef.current) {
+        pdfLibLoadedRef.current = true; // prevent re-imports
+
+        try {
+          // Dynamically import react-pdf
+          const pdfModule = await import("react-pdf");
+          const { pdfjs, Document: Doc, Page: Pg } = pdfModule;
+
+          // Set PDF.js worker
+          try {
+            pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+              "pdfjs-dist/build/pdf.worker.mjs",
+              import.meta.url
+            ).toString();
+          } catch {
+            pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+          }
+
+          // Dynamically import CSS
+          await import("react-pdf/dist/Page/AnnotationLayer.css");
+          await import("react-pdf/dist/Page/TextLayer.css");
+
+          // Dynamically import PDF file
+          const pdfFileModule = await import("/documents/sample.pdf?url");
+
+          // Set state
+          setDocument(() => Doc);
+          setPage(() => Pg);
+          setPdfUrl(pdfFileModule.default); // store PDF URL in state
+        } catch (err) {
+          console.error("Failed to load PDF library or file:", err);
+        }
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
+    handleResize(); // run once on mount
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [windowWidth]);
 
   // Load sample PDF for demo
@@ -1027,7 +1077,7 @@ export function Home() {
 
                       {/* PDF Document */}
                       <div className={styles.pdfScrollContainer}>
-                        {pdfUrl ? (
+                        {pdfUrl && Document && Page ? (
                           <Document
                             key="sample-pdf-viewer"
                             file={pdfUrl}
