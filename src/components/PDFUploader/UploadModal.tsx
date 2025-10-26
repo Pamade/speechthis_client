@@ -614,7 +614,7 @@ export function UploadModal({ onClose, onUploadComplete, isGenerating = false, t
                                 <Link
                                     to="/pricing"
                                 >
-                                    INSUFFICIENT TRANSFER ({(selectedFile.size / (1024 * 1024)).toFixed(2)}MB needed)
+                                    INSUFFICIENT TRANSFER
                                 </Link>
                             </button>
                         )

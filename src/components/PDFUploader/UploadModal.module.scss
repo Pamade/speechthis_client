@@ -390,9 +390,10 @@
 
     .fileInput {
         margin-bottom: 0 !important;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         color: transparent;
         text-align: center;
+        // box-sizing: border-box;
         // display: flex;
         // flex-direction: column;
         width: 100%;
@@ -401,7 +402,7 @@
 
 
         &::file-selector-button {
-            padding: 0.35rem 6rem;
+            padding: 0.35rem 1rem;
             font-size: 0.75rem;
             /* Make button block level so margin auto works */
         }

@@ -221,6 +221,7 @@
     justify-content: center;
     padding: 2rem 1rem; // Reduced horizontal padding
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .uploadPrompt {
@@ -734,12 +735,6 @@
 // Landscape orientation for mobile devices
 @media (max-width: 1000px) and (orientation: landscape) {
 
-    .content {
-        box-sizing: border-box;
-    }
-
-
-
     .audioPlayerBar {
         padding: 0.4rem 0.75rem;
         height: auto;
@@ -1002,10 +997,6 @@
 @media (max-width: 480px) {
 
     // Further styling refinements for phones
-    .content {
-        // overflow-x: auto;
-        box-sizing: border-box;
-    }
 
     .audioPlayerBar {
         padding: 0.2rem 0.4rem;

@@ -469,12 +469,6 @@ const PdfViewer: React.FC<PdfViewerProps> = ({
     top: ${position.rect.y}px;
     width: ${position.rect.width}px;
     height: ${position.rect.height}px;
-    background-color: rgba(255, 193, 7, 0.4);
-    border: 2px solid rgba(255, 193, 7, 0.8);
-    border-radius: 3px;
-    pointer-events: none;
-    z-index: 1000;
-    transition: all 0.15s ease;
   `;
 
     containerRef.current.appendChild(highlightElement);
@@ -635,6 +629,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({
   }, 100), [wordPositions, hoveredWord]); // B optimization: throttle at 100ms instead of debounce 50ms
 
   const handleContainerClick = useCallback((e: React.MouseEvent) => {
+    if (screenWidth < 768) return;
     if (!onRequestSeekToTextOffset || wordPositions.length === 0) return;
 
     // If a word is being hovered, the click is for that word. This is the most accurate method.

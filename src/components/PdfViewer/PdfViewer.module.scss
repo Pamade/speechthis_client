@@ -188,27 +188,27 @@ button.zoomLevel {
 
 // Direct text highlighting (applied to spans)
 // Global override for react-pdf spans
-:global {
-    .react-pdf__Page__textContent {
-        span.highlighted {
-            color: #ffffff !important;
-            background-color: rgb(0, 19, 126) !important;
-            padding: 1px !important;
-            border-radius: 2px !important;
-            transition: all 0.2s ease-in-out !important;
-            z-index: 100 !important;
-        }
-    }
-}
+// :global {
+//     .react-pdf__Page__textContent {
+//         span.highlighted {
+//             color: #ffffff !important;
+//             background-color: rgb(0, 19, 126) !important;
+//             padding: 1px !important;
+//             border-radius: 2px !important;
+//             transition: all 0.2s ease-in-out !important;
+//             z-index: 100 !important;
+//         }
+//     }
+// }
 
 // Overlay highlighting for extra visibility
-.wordHighlight {
-    background-color: rgba(255, 255, 0, 0.6);
-    border: 2px solid #ff6600;
-    border-radius: 4px;
-    z-index: 1000;
-    box-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
-}
+// .wordHighlight {
+//     background-color: rgba(255, 255, 0, 0.6);
+//     border: 2px solid #ff6600;
+//     border-radius: 4px;
+//     z-index: 1000;
+//     box-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
+// }
 
 // Loading and error styles
 .documentLoading {
@@ -267,6 +267,11 @@ button.zoomLevel {
 
 // Responsive styles
 @media (max-width: 768px) {
+
+    .kindleWrapper {
+        // pointer-events: none
+    }
+
     .kindleContainer {
         padding: 2rem 0.25rem;
     }
@@ -274,6 +279,7 @@ button.zoomLevel {
     .kindlePage {
         margin-bottom: 2rem;
     }
+
 
     .zoomControls {
         display: none; // Hide zoom controls on mobile - they're now in the audio player bar
