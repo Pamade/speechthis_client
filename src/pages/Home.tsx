@@ -1162,8 +1162,8 @@ export function Home() {
               <div className={styles.stepCard}>
                 <div className={styles.stepNumber}>1</div>
                 <div className={styles.stepIcon}>📤</div>
-                <h3>Upload Your Document</h3>
-                <p>Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple formats and languages.</p>
+                <h3>Upload Document</h3>
+                <p>Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple formats</p>
               </div>
               <div className={styles.stepArrow}>→</div>
               <div className={styles.stepCard}>
