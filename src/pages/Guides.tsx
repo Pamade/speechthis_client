@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import styles from './Guides.module.scss';
 
 import guidesJSON from '../assets/guides/guides.json';
 import GuideBack from '../components/GuideBack/GuideBack';
 import { domain } from '../utils/other';
-import styles from './Guides.module.scss';
+
 interface Guide {
     id: string;
     title: string;
