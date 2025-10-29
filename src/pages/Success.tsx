@@ -19,14 +19,14 @@ export function Success() {
         // alert(res)
         console.log(res)
         if (res.data.success) {
-          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-            window.gtag('event', 'conversion', {
-              'send_to': 'AW-17674261329/B5P0CK-2-bIbENGm3-tB',
-              'value': res.data.amount,
-              'currency': 'EUR',
-              'transaction_id': sessionId
-            });
-          }
+          // if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          //   window.gtag('event', 'conversion', {
+          //     'send_to': 'AW-17674261329/B5P0CK-2-bIbENGm3-tB',
+          //     'value': res.data.amount,
+          //     'currency': 'EUR',
+          //     'transaction_id': sessionId
+          //   });
+          // }
 
         }
       } catch (error) {
