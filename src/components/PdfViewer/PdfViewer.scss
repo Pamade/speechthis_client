@@ -87,7 +87,7 @@
   pointer-events: none;
   z-index: 1000;
   transition: all 0.2s ease;
-  padding-right: 7px;
+  padding-right: 3px;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
 }
 
@@ -95,7 +95,7 @@
   position: absolute;
   background-color: rgba(0, 80, 200, 0.2);
   border: 1px solid rgba(0, 80, 200, 0.5);
-  padding-right: 7px;
+  padding-right: 2px;
   border-radius: 3px;
   z-index: 999;
   transition: all 0.05s ease;
