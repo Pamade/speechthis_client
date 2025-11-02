@@ -22,8 +22,8 @@
   
   <!-- Sample Reader Page -->
   <url>
-    <loc>https://speechthis.com/sample-reader</loc>
-    <lastmod>2025-10-15</lastmod>
+    <loc>https://speechthis.com/reader/sample</loc>
+    <lastmod>2025-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

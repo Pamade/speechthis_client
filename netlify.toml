@@ -5,6 +5,19 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[[redirects]]
+  from = "https://www.speechthis.com/*"
+  to = "https://speechthis.com/:splat"
+  status = 301
+  force = true
+
+# Redirect www to non-www (HTTP)
+[[redirects]]
+  from = "http://www.speechthis.com/*"
+  to = "https://speechthis.com/:splat"
+  status = 301
+  force = true
+
 # SPA redirect - handles client-side routing
 [[redirects]]
   from = "/*"
