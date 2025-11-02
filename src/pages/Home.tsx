@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDownload } from '../context/DownloadContext';
 import { UserContext } from '../context/UserContext';
 import { domain } from '../utils/other';
-import samplePDF from '/documents/sample.pdf?url';
+// import samplePDF from '/documents/sample.pdf?url';
 import type { DocumentProps, PageProps } from 'react-pdf';
 
 // const Document = lazy(() => import('react-pdf').then(module => ({ default: module.Document })));
@@ -242,66 +242,57 @@ export function Home() {
   }, [windowWidth]);
 
 
-  // Load sample PDF for demo and extract preview text after a delay
+  // Load sample PDF for demo and extract preview text - DESKTOP ONLY
   useEffect(() => {
-    setPdfUrl(samplePDF);
-    setIsPdfLoading(false);
+    // Only load PDF on desktop
+    if (windowWidth >= 768) {
+      // ✅ Dynamically import PDF only when needed
+      import('/documents/sample.pdf?url').then((module) => {
+        const samplePDF = module.default;
+        setPdfUrl(samplePDF);
+        setIsPdfLoading(false);
 
-    // Defer non-critical text extraction to improve initial load performance
-    const timer = setTimeout(() => {
-      const extractPreview = async () => {
-        try {
-          const response = await fetch(samplePDF);
-          const arrayBuffer = await response.arrayBuffer();
-          setSamplePdfData(arrayBuffer);
+        // Defer non-critical text extraction to improve initial load performance
+        const timer = setTimeout(() => {
+          const extractPreview = async () => {
+            try {
+              const response = await fetch(samplePDF);
+              const arrayBuffer = await response.arrayBuffer();
+              setSamplePdfData(arrayBuffer);
 
-          const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-          const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
-          const pages = await extractTextFromPDF(file);
+              const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+              const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
+              const pages = await extractTextFromPDF(file);
 
-          if (pages.length > 0) {
-            const firstPageText = pages[0].text.trim();
-            const previewLength = Math.min(150, firstPageText.length);
-            let preview = firstPageText.substring(0, previewLength);
-            const lastSpace = preview.lastIndexOf(' ');
-            if (lastSpace > 100) {
-              preview = preview.substring(0, lastSpace);
+              if (pages.length > 0) {
+                const firstPageText = pages[0].text.trim();
+                const previewLength = Math.min(150, firstPageText.length);
+                let preview = firstPageText.substring(0, previewLength);
+                const lastSpace = preview.lastIndexOf(' ');
+                if (lastSpace > 100) {
+                  preview = preview.substring(0, lastSpace);
+                }
+                setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
+              }
+            } catch (error) {
+              console.error('Failed to extract preview:', error);
             }
-            setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
-          }
-        } catch (error) {
-          console.error('Failed to extract preview:', error);
-        }
-      };
+          };
 
-      extractPreview();
-    }, 1000); // Delay by 1 second
+          extractPreview();
+        }, 1000);
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
-  }, []);
-
-  const extractTextInBackground = async (blob: Blob) => {
-    try {
-      const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
-      const pages = await extractTextFromPDF(file);
-
-      if (pages.length > 0) {
-        const firstPageText = pages[0].text.trim();
-        const previewLength = Math.min(150, firstPageText.length);
-        let preview = firstPageText.substring(0, previewLength);
-
-        const lastSpace = preview.lastIndexOf(' ');
-        if (lastSpace > 100) {
-          preview = preview.substring(0, lastSpace);
-        }
-
-        setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
-      }
-    } catch (extractError) {
-      console.error('Failed to extract preview text:', extractError);
-      setPreviewText('Welcome! This is a preview of how this voice sounds.');
+        return () => clearTimeout(timer);
+      }).catch((error) => {
+        console.error('Failed to load PDF:', error);
+        setIsPdfLoading(false);
+      });
+    } else {
+      // Mobile/Tablet: Just set a default preview text without loading PDF
+      setPreviewText('Transform your PDF documents into high-quality audio with AI-powered text-to-speech.');
+      setIsPdfLoading(false);
     }
-  };
+  }, [windowWidth]);
 
   // Cleanup blob URL on unmount
   useEffect(() => {
