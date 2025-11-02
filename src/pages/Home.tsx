@@ -187,28 +187,11 @@ export function Home() {
 
 
 
+  // Load PDF library and handle resize
   useEffect(() => {
-    const handleResize = async () => {
-      const newWidth = window.innerWidth;
-      setWindowWidth(newWidth);
-
-      // -----------------------------
-      // Adjust PDF scale for tablet
-      // -----------------------------
-      if (newWidth >= 570 && newWidth < 768) {
-        setPdfScale((prev) => (prev === 1.0 ? 0.6 : prev));
-      } else if (
-        windowWidth >= 570 &&
-        windowWidth < 768 &&
-        (newWidth < 570 || newWidth >= 768)
-      ) {
-        setPdfScale((prev) => (prev === 0.6 ? 1.0 : prev));
-      }
-
-      // -----------------------------
+    const loadPdfLibrary = async () => {
       // Load react-pdf + PDF file dynamically (desktop only)
-      // -----------------------------
-      if (newWidth >= 768 && !pdfLibLoadedRef.current) {
+      if (window.innerWidth >= 768 && !pdfLibLoadedRef.current) {
         pdfLibLoadedRef.current = true; // prevent re-imports
 
         try {
@@ -230,117 +213,71 @@ export function Home() {
           await import("react-pdf/dist/Page/AnnotationLayer.css");
           await import("react-pdf/dist/Page/TextLayer.css");
 
-          // Dynamically import PDF file
-          const pdfFileModule = await import("/documents/sample.pdf?url");
-
-          // Set state
           setDocument(() => Doc);
           setPage(() => Pg);
-          setPdfUrl(pdfFileModule.default); // store PDF URL in state
         } catch (err) {
-          console.error("Failed to load PDF library or file:", err);
+          console.error("Failed to load PDF library:", err);
         }
       }
     };
 
-    // Add resize listener
-    window.addEventListener("resize", handleResize);
-    handleResize(); // run once on mount
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      loadPdfLibrary(); // Check if library needs to be loaded on resize
+    };
 
+    handleResize(); // Initial check
+
+    window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty dependency array ensures this runs only once
+
+  // Adjust PDF scale based on window width
+  useEffect(() => {
+    if (windowWidth >= 570 && windowWidth < 768) {
+      setPdfScale(0.6);
+    } else {
+      setPdfScale(1.0);
+    }
   }, [windowWidth]);
 
-  // Load sample PDF for demo
-  // useEffect(() => {
-  //   const loadSamplePdf = async () => {
-  //     try {
-  //       setIsPdfLoading(true);
-  //       setPdfLoadError(false);
 
-  //       // Use resource hints for better performance
-  //       const link = document.createElement('link');
-  //       link.rel = 'preload';
-  //       link.as = 'fetch';
-  //       link.href = '/documents/sample.pdf';
-  //       document.head.appendChild(link);
-
-  //       const response = await fetch('/documents/sample.pdf', {
-  //         // Use default priority - browser will handle it optimally
-  //         cache: 'force-cache' // Cache aggressively
-  //       });
-
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch PDF');
-  //       }
-
-  //       const arrayBuffer = await response.arrayBuffer();
-  //       setSamplePdfData(arrayBuffer);
-
-  //       // Create blob URL for rendering
-  //       const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-  //       const url = URL.createObjectURL(blob);
-  //       setPdfUrl(url);
-  //       setIsPdfLoading(false);
-
-  //       // Extract text in idle time (won't block main thread)
-  //       if ('requestIdleCallback' in window) {
-  //         requestIdleCallback(() => extractTextInBackground(blob));
-  //       } else {
-  //         setTimeout(() => extractTextInBackground(blob), 100);
-  //       }
-
-  //     } catch (error) {
-  //       console.error('Failed to load sample PDF:', error);
-  //       setPdfLoadError(true);
-  //       setIsPdfLoading(false);
-  //       setPreviewText('Welcome! This is a preview of how this voice sounds.');
-  //     }
-  //   };
-
-  //   loadSamplePdf();
-
-  //   return () => {
-  //     if (pdfUrl) {
-  //       URL.revokeObjectURL(pdfUrl);
-  //     }
-  //   };
-  // }, []);
-
+  // Load sample PDF for demo and extract preview text after a delay
   useEffect(() => {
-    // Set the PDF URL directly from import
     setPdfUrl(samplePDF);
     setIsPdfLoading(false);
 
-    // Extract preview text (keep this part)
-    const extractPreview = async () => {
-      try {
-        const response = await fetch(samplePDF);
-        const arrayBuffer = await response.arrayBuffer();
-        setSamplePdfData(arrayBuffer);
+    // Defer non-critical text extraction to improve initial load performance
+    const timer = setTimeout(() => {
+      const extractPreview = async () => {
+        try {
+          const response = await fetch(samplePDF);
+          const arrayBuffer = await response.arrayBuffer();
+          setSamplePdfData(arrayBuffer);
 
-        const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-        const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
-        const pages = await extractTextFromPDF(file);
+          const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+          const file = new File([blob], 'sample.pdf', { type: 'application/pdf' });
+          const pages = await extractTextFromPDF(file);
 
-        if (pages.length > 0) {
-          const firstPageText = pages[0].text.trim();
-          const previewLength = Math.min(150, firstPageText.length);
-          let preview = firstPageText.substring(0, previewLength);
-          const lastSpace = preview.lastIndexOf(' ');
-          if (lastSpace > 100) {
-            preview = preview.substring(0, lastSpace);
+          if (pages.length > 0) {
+            const firstPageText = pages[0].text.trim();
+            const previewLength = Math.min(150, firstPageText.length);
+            let preview = firstPageText.substring(0, previewLength);
+            const lastSpace = preview.lastIndexOf(' ');
+            if (lastSpace > 100) {
+              preview = preview.substring(0, lastSpace);
+            }
+            setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
           }
-          setPreviewText(preview + (preview.length < firstPageText.length ? '...' : ''));
-        } else {
-          setPreviewText('Welcome! This is a preview of how this voice sounds.');
+        } catch (error) {
+          console.error('Failed to extract preview:', error);
         }
-      } catch (error) {
-        console.error('Failed to extract preview:', error);
-        setPreviewText('Welcome! This is a preview of how this voice sounds.');
-      }
-    };
+      };
 
-    extractPreview();
+      extractPreview();
+    }, 1000); // Delay by 1 second
+
+    return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []);
 
   const extractTextInBackground = async (blob: Blob) => {
@@ -826,6 +763,90 @@ export function Home() {
 
       {/* Canonical URL */}
       <link rel="canonical" href={domain} />
+
+      {/* How It Works - JSON-LD */}
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Convert PDF to Audio",
+            "description": "Transform your documents into audio in three simple steps.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Upload Document",
+                "text": "Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple formats.",
+                "position": 1
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Choose Your Voice",
+                "text": "Select from over 50 natural-sounding AI voices in multiple languages and accents.",
+                "position": 2
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Listen or Download",
+                "text": "Listen online with read-along highlighting or download MP3 files for offline listening.",
+                "position": 3
+              }
+            ]
+          }
+        `}
+      </script>
+
+      {/* FAQ - JSON-LD */}
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What file formats are supported?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We support PDF, DOCX, EPUB, and TXT files. Simply upload your document and we'll handle the rest. Most common document formats are compatible with our platform."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many voices are available?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer over 50 natural-sounding AI voices powered by Google and Azure Text-to-Speech. Choose from multiple languages, accents, and voice styles to find the perfect match for your content."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use this for commercial purposes?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! You can create audio content for your business, courses, podcasts, or any other commercial application."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does the conversion take?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Conversion time depends on document length. A typical 10-page document takes 2-3 minutes. Our system processes documents in real-time with progress updates throughout."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my data secure and private?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. We use enterprise-grade encryption for all uploads. Your documents are processed in real-time and never permanently stored on our servers. We take your privacy seriously."
+                }
+              }
+            ]
+          }
+        `}
+      </script>
 
       <div className={styles.container}>
         <div className={styles.mainContent}>
