@@ -75,7 +75,7 @@ export function Pricing() {
       <div className={styles.container}>
         <header className={styles.header}>
           <h1>Simple, Transparent Pricing</h1>
-          <p>Choose the plan that's right for you</p>
+          <p>Pay as you go. No subscriptions, no hidden fees.</p>
         </header>
 
         <div className={styles.transferCalculator}>
@@ -161,9 +161,71 @@ export function Pricing() {
           </div>
         </div>
 
+        {/* What's Included Section */}
+        <section className={styles.featuresSection}>
+          <h2 className={styles.sectionTitle}>What's Included</h2>
+          <div className={styles.featuresGrid}>
+            <div className={styles.featureCard}>
+              <div className={styles.featureIcon}>🎙️</div>
+              <h3>High-Quality AI Voices</h3>
+              <p>Access to premium text-to-speech voices from Google and Azure.</p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featureIcon}>📄</div>
+              <h3>Large File Support</h3>
+              <p>Convert large documents, books, and articles up to 2GB.</p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featureIcon}>📥</div>
+              <h3>Downloadable MP3s</h3>
+              <p>Get high-quality MP3 audio files to listen anywhere, anytime.</p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featureIcon}>🔒</div>
+              <h3>Secure & Private</h3>
+              <p>Your files are processed securely and never stored on our servers.</p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featureIcon}>🔄</div>
+              <h3>No Subscriptions</h3>
+              <p>Make a one-time purchase for the transfer you need. No recurring bills.</p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featureIcon}>💰</div>
+              <h3>Pay For What You Use</h3>
+              <p>Your transfer is only used when you convert a file. It never expires.</p>
+            </div>
+          </div>
+        </section>
 
+        {/* FAQ Section */}
+        <section className={styles.faqSection}>
+          <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+          <div className={styles.faqContainer}>
+            <div className={styles.faqItem}>
+              <h3>What am I paying for?</h3>
+              <p>You are purchasing "transfer" credit, which is used to convert your PDF documents into audio. The amount of transfer required is equal to the size of your file. For example, converting a 10MB PDF will use 10MB of your transfer credit.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>Is this a one-time payment?</h3>
+              <p>Yes, all purchases are one-time payments. We do not offer subscriptions. You can buy more transfer credit whenever you need it.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>What payment methods do you accept?</h3>
+              <p>We accept all major credit cards, including Visa, Mastercard, and American Express, processed securely through Stripe.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>Does my transfer expire?</h3>
+              <p>No, your purchased transfer credit never expires. You can use it whenever you need to convert a document.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>Can I get a refund?</h3>
+              <p>Due to the nature of digital services, we generally do not offer refunds. However, if you experience a technical issue with a conversion, please contact our support, and we will be happy to assist you and provide a transfer credit refund if necessary.</p>
+            </div>
+          </div>
+        </section>
 
       </div>
     </>
   );
-} 
+}

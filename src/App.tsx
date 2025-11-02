@@ -20,6 +20,7 @@ import SampleReaderPage from "./pages/SampleReaderPage";
 import Footer from "./components/Footer/Footer";
 import Guides from './pages/Guides';
 import SingleGuide from './pages/SingleGuide';
+import ScrollToTop from './utils/scrollToTop';
 function App() {
 
   const [downloadBarHeight, setDownloadBarHeight] = useState(0);
@@ -76,6 +77,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <UserProvider>
         <Routes>
           {/* Layout routes */}
