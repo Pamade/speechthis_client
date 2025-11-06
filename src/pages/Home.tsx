@@ -994,14 +994,16 @@ export function Home() {
                       >
                         🎧 Listen Now
                       </button>
-                      <button
-                        className={styles.convertButton}
-                        onClick={handleDemoConvert}
-                        disabled={isSampleGenerating}
-                      >
-                        Convert
-                        {/* {isSampleGenerating ? '⏳ Converting...' : '🎵 Convert to Audio'} */}
-                      </button>
+                      {windowWidth >= 768 &&
+                        <button
+                          className={styles.convertButton}
+                          onClick={handleDemoConvert}
+                          disabled={isSampleGenerating}
+                        >
+                          Convert
+                          {/* {isSampleGenerating ? '⏳ Converting...' : '🎵 Convert to Audio'} */}
+                        </button>
+                      }
                     </div>
 
                     {sampleProgress &&
