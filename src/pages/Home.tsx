@@ -4,6 +4,7 @@ import { formatFileSize } from '../utils/fileUtils';
 import { extractTextFromPDF } from '../utils/pdfUtils';
 import styles from './Home.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { FileText, Upload, Headphones, Globe, Zap, Lock, BookOpen, Briefcase, Dumbbell, Music } from 'lucide-react';
 // import { pdfjs } from "react-pdf";
 // import 'react-pdf/dist/Page/AnnotationLayer.css';
 // import 'react-pdf/dist/Page/TextLayer.css';
@@ -856,7 +857,7 @@ export function Home() {
                 <div className={styles.verticalCardLayout}>
                   <div className={styles.documentCard}>
                     <div className={styles.documentCardHeader}>
-                      <span className={styles.documentIcon}>📄</span>
+                      <span className={styles.documentIcon}><FileText size={24} /></span>
                       <h3 className={styles.documentTitle}>Sample.pdf</h3>
                     </div>
 
@@ -992,7 +993,7 @@ export function Home() {
                         className={styles.listenButton}
                         onClick={() => navigate('/reader/sample')}
                       >
-                        🎧 Listen Now
+                        <Headphones size={16} /> Listen Now
                       </button>
                       {windowWidth >= 768 &&
                         <button
@@ -1175,21 +1176,21 @@ export function Home() {
             <div className={styles.stepsContainer}>
               <div className={styles.stepCard}>
                 <div className={styles.stepNumber}>1</div>
-                <div className={styles.stepIcon}>📤</div>
+                <div className={styles.stepIcon}><Upload size={32} /></div>
                 <h3>Upload Document</h3>
                 <p>Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple formats</p>
               </div>
               <div className={styles.stepArrow}>→</div>
               <div className={styles.stepCard}>
                 <div className={styles.stepNumber}>2</div>
-                <div className={styles.stepIcon}>🎙️</div>
+                <div className={styles.stepIcon}><Music size={32} /></div>
                 <h3>Choose Your Voice</h3>
                 <p>Select from over 50 natural-sounding AI voices in multiple languages and accents.</p>
               </div>
               <div className={styles.stepArrow}>→</div>
               <div className={styles.stepCard}>
                 <div className={styles.stepNumber}>3</div>
-                <div className={styles.stepIcon}>🎧</div>
+                <div className={styles.stepIcon}><Headphones size={32} /></div>
                 <h3>Listen or Download</h3>
                 <p>Listen online with read-along highlighting or download MP3 files for offline listening.</p>
               </div>
@@ -1202,32 +1203,32 @@ export function Home() {
             <p className={styles.sectionSubtitle}>Everything you need to convert documents to audio</p>
             <div className={styles.featuresGrid}>
               <div className={styles.featureGridCard}>
-                <div className={styles.featureGridIcon}>🌍</div>
+                <div className={styles.featureGridIcon}><Globe size={32} /></div>
                 <h3>Multi-Language Support</h3>
                 <p>Support for 40+ languages including English, Spanish, French, German, Chinese, and more.</p>
               </div>
               <div className={styles.featureGridCard}>
-                <div className={styles.featureGridIcon}>⚡</div>
+                <div className={styles.featureGridIcon}><Zap size={32} /></div>
                 <h3>Lightning Fast</h3>
                 <p>Convert documents in minutes with our high-speed processing engine.</p>
               </div>
               <div className={styles.featureGridCard}>
-                <div className={styles.featureGridIcon}>🎯</div>
+                <div className={styles.featureGridIcon}><FileText size={32} /></div>
                 <h3>Read-Along Highlighting</h3>
                 <p>Follow along with synchronized text highlighting as the audio plays.</p>
               </div>
               <div className={styles.featureGridCard}>
-                <div className={styles.featureGridIcon}>📥</div>
+                <div className={styles.featureGridIcon}><Music size={32} /></div>
                 <h3>Downloadable MP3s</h3>
                 <p>Download high-quality MP3 files to listen anywhere, anytime.</p>
               </div>
               <div className={styles.featureGridCard}>
-                <div className={styles.featureGridIcon}>🔐</div>
+                <div className={styles.featureGridIcon}><Lock size={32} /></div>
                 <h3>Secure & Private</h3>
                 <p>Your documents are encrypted and never stored on our servers.</p>
               </div>
               <div className={styles.featureGridCard}>
-                <div className={styles.featureGridIcon}>📱</div>
+                <div className={styles.featureGridIcon}><Briefcase size={32} /></div>
                 <h3>Mobile Friendly</h3>
                 <p>Works perfectly on desktop, tablet, and mobile devices.</p>
               </div>
@@ -1240,7 +1241,7 @@ export function Home() {
             <p className={styles.sectionSubtitle}>See how different people use our platform</p>
             <div className={styles.useCasesGrid}>
               <div className={styles.useCaseCard}>
-                <div className={styles.useCaseIcon}>📚</div>
+                <div className={styles.useCaseIcon}><BookOpen size={40} /></div>
                 <h3>Students & Learners</h3>
                 <p>Listen to textbooks and study materials while commuting, exercising, or multitasking. Perfect for auditory learners.</p>
                 <ul className={styles.useCaseList}>
@@ -1250,7 +1251,7 @@ export function Home() {
                 </ul>
               </div>
               <div className={styles.useCaseCard}>
-                <div className={styles.useCaseIcon}>💼</div>
+                <div className={styles.useCaseIcon}><Briefcase size={40} /></div>
                 <h3>Business Professionals</h3>
                 <p>Stay on top of reports, whitepapers, and research while driving or during your daily routine.</p>
                 <ul className={styles.useCaseList}>
@@ -1260,7 +1261,7 @@ export function Home() {
                 </ul>
               </div>
               <div className={styles.useCaseCard}>
-                <div className={styles.useCaseIcon}>🎧</div>
+                <div className={styles.useCaseIcon}><Headphones size={40} /></div>
                 <h3>Content Creators</h3>
                 <p>Transform written content into engaging audio for podcasts, audiobooks, or social media.</p>
                 <ul className={styles.useCaseList}>
@@ -1270,7 +1271,7 @@ export function Home() {
                 </ul>
               </div>
               <div className={styles.useCaseCard}>
-                <div className={styles.useCaseIcon}>🌟</div>
+                <div className={styles.useCaseIcon}><Globe size={40} /></div>
                 <h3>Accessibility Champions</h3>
                 <p>Make written content accessible for people with visual impairments, dyslexia, or reading difficulties.</p>
                 <ul className={styles.useCaseList}>

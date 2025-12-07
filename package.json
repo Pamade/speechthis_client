@@ -20,6 +20,7 @@
     "buffer": "^6.0.3",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
+    "lucide-react": "^0.556.0",
     "mammoth": "^1.10.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.45.0",
     "pdfjs-dist": "^5.3.93",
