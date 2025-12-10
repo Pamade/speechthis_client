@@ -857,7 +857,7 @@ export function Home() {
                 <div className={styles.verticalCardLayout}>
                   <div className={styles.documentCard}>
                     <div className={styles.documentCardHeader}>
-                      <span className={styles.documentIcon}><FileText size={24} /></span>
+                      <span className={styles.documentIcon}><FileText size={32} /></span>
                       <h3 className={styles.documentTitle}>Sample.pdf</h3>
                     </div>
 
@@ -1178,7 +1178,7 @@ export function Home() {
                 <div className={styles.stepNumber}>1</div>
                 <div className={styles.stepIcon}><Upload size={32} /></div>
                 <h3>Upload Document</h3>
-                <p>Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple formats</p>
+                <p>Upload PDF, DOCX, EPUB, or TXT files. Our system supports multiple file formats</p>
               </div>
               <div className={styles.stepArrow}>→</div>
               <div className={styles.stepCard}>

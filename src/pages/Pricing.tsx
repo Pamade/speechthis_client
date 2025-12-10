@@ -3,6 +3,7 @@ import styles from './Pricing.module.scss';
 import { createCheckoutSession } from '../services/stripeService';
 import { useNavigate } from 'react-router-dom';
 import { domain } from '../utils/other';
+import { Mic, FileText, Download, Lock, RefreshCw, Wallet } from 'lucide-react';
 
 
 export function Pricing() {
@@ -166,32 +167,32 @@ export function Pricing() {
           <h2 className={styles.sectionTitle}>What's Included</h2>
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🎙️</div>
+              <div className={styles.featureIcon}><Mic size={32} /></div>
               <h3>High-Quality AI Voices</h3>
               <p>Access to premium text-to-speech voices from Google and Azure.</p>
             </div>
             <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📄</div>
+              <div className={styles.featureIcon}><FileText size={32} /></div>
               <h3>Large File Support</h3>
               <p>Convert large documents, books, and articles up to 2GB.</p>
             </div>
             <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📥</div>
+              <div className={styles.featureIcon}><Download size={32} /></div>
               <h3>Downloadable MP3s</h3>
               <p>Get high-quality MP3 audio files to listen anywhere, anytime.</p>
             </div>
             <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔒</div>
+              <div className={styles.featureIcon}><Lock size={32} /></div>
               <h3>Secure & Private</h3>
               <p>Your files are processed securely and never stored on our servers.</p>
             </div>
             <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔄</div>
+              <div className={styles.featureIcon}><RefreshCw size={32} /></div>
               <h3>No Subscriptions</h3>
               <p>Make a one-time purchase for the transfer you need. No recurring bills.</p>
             </div>
             <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>💰</div>
+              <div className={styles.featureIcon}><Wallet size={32} /></div>
               <h3>Pay For What You Use</h3>
               <p>Your transfer is only used when you convert a file. It never expires.</p>
             </div>

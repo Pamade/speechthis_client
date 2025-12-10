@@ -4,6 +4,7 @@ import styles from './Profile.module.scss';
 import toast from 'react-hot-toast';
 import { instance } from '../utils/axiosInstance';
 import { useUser } from '../context/UserContext';
+import { Wallet, Music, BookOpen } from 'lucide-react';
 
 interface AudioFile {
   audioCreatedAt: string;
@@ -268,21 +269,21 @@ export function Profile() {
           {/* Quick Stats */}
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
-              <div className={styles.statIcon}>💰</div>
+              <div className={styles.statIcon}><Wallet size={32} /></div>
               <div className={styles.statInfo}>
                 <h3>{formatTransfer(currentTransfer)}</h3>
                 <p>Available Transfer</p>
               </div>
             </div>
             <div className={styles.statCard}>
-              <div className={styles.statIcon}>🎵</div>
+              <div className={styles.statIcon}><Music size={32} /></div>
               <div className={styles.statInfo}>
                 <h3>{totalFilesConverted}</h3>
                 <p>Audio Files</p>
               </div>
             </div>
             <div className={styles.statCard}>
-              <div className={styles.statIcon}>📚</div>
+              <div className={styles.statIcon}><BookOpen size={32} /></div>
               <div className={styles.statInfo}>
                 <h3>{totalReadingFiles}</h3>
                 <p>Reading Files</p>
@@ -305,7 +306,7 @@ export function Profile() {
                 {paginatedHistory.map((item, index) => (
                   <div key={index} className={styles.historyItem}>
                     <div className={styles.historyIcon}>
-                      {item.type === 'Audio Conversion' ? '🎵' : '📚'}
+                      {item.type === 'Audio Conversion' ? <Music size={24} /> : <BookOpen size={24} />}
                     </div>
                     <div className={styles.historyInfo}>
                       <h4>{item.fileName}</h4>
