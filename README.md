@@ -1,54 +1,103 @@
-# React + TypeScript + Vite
+# PDF to Audio Converter and Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+**Live Demo:** [speechthis.com](https://speechthis.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A full-stack web application that converts PDF, DOCX, and EPUB documents using AI text-to-speech. Built as a solo project to provide an accessible, user-friendly solution for consuming written content through audio.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Multi-Format Support**: Convert PDF, DOCX, and EPUB files to audio
+- **AI Voice Integration**: Azure and Google TTS engines with multiple voice options
+- **Real-Time Text Highlighting**: Synchronized word-by-word highlighting during playback
+- **Audio Downloads**: Export as MP3
+- **Responsive Design**: Optimized experience across desktop, tablet, and mobile devices
+- **Payment Integration**: Stripe-powered payment system
+- **User Authentication**: Secure login and profile management
+- **Educational Guides**: Content library with SEO-optimized articles
+
+---
+
+## Tech Stack
+
+### Core
+- **React 19**
+- **TypeScript**
+- **Vite**
+- **SCSS Modules**
+
+### Key Libraries
+- **react-pdf** (`pdfjs-dist`) - PDF rendering and text extraction
+- **mammoth** - DOCX document parsing
+- **epubjs** - EPUB file processing
+- **Stripe SDK** - Payment processing integration
+- **Axios** - HTTP client for API communication
+
+### State Management
+- **React Context API** 
+- **Custom Hooks**
+
+---
+
+## Project Architecture
+
+### Directory Structure
+
+```
+src/
+├── pages/           # Route components (Home, Dashboard, Pricing, Guides)
+├── components/      # Reusable UI components (Navigation, AudioPlayer, PDFViewer)
+├── utils/           # File processing utilities (PDF/DOCX/EPUB parsers)
+├── customHooks/     # TTS integration and state management hooks
+├── context/         # Global state providers (User, Downloads)
+├── services/        # API integration (Stripe)
+├── types/           # TypeScript interfaces and types
+└── styles/          # Global styles and theme variables
+
+public/
+├── guides/          # Educational content and thumbnails
+├── documents/       # Sample PDFs for demo
+└── fonts/           # Custom web fonts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Core Workflows
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Document Processing Pipeline:**
+1. File upload → Format detection (PDF/DOCX/EPUB)
+2. Text extraction using format-specific parsers
+3. Text chunking for TTS API limits
+4. Sequential TTS API calls with progress tracking
+5. Audio blob assembly and MP3 conversion
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+**TTS Integration:**
+- Azure Neural TTS: Premium voices with SSML support
+- Google Cloud TTS: Multiple languages and voice variants
+- Real-time audio generation with cancellation support
+- Word-level timestamp extraction for synchronized highlighting
+
+---
+
+## Backend Integration
+
+This frontend application communicates with a Java Spring Boot backend for:
+- User authentication and authorization
+- TTS API orchestration (Azure/Google)
+- Payment processing via Stripe
+- Document storage and retrieval
+
+**Backend Repository:** [speechthis_server](https://github.com/Pamade/speechthis_server)
+
+---
+
+## Role & Responsibilities
+
+**Solo Full-Stack Development** - Complete ownership of:
+- Frontend architecture and UI/UX design
+- File processing and TTS integration logic
+- Responsive design implementation
+- Performance optimization (lazy loading, code splitting)
+- SEO strategy and content creation
+- Backend API design and implementation
+- Database schema and deployment infrastructure
